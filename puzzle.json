@@ -1,0 +1,44 @@
+{
+	"puzzle_id": 1,
+	"version": 1,
+	"puzzle_meta": {
+		"title": "The best 3-D crossword ever",
+		"editor": "Chloe Le",
+		"height": 6,
+		"width": 6,
+		"depth": 6,
+		"author": "Jack Frysinger"
+	},
+	"puzzle_data": {
+		"A": [{
+			"clue": "Food for a whiney horse",
+			"start": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"length": 3,
+			"entry": "HAY"
+		}],
+		"D": [{
+			"clue": "Pseudonym prefix",
+			"start": {
+				"x": 1,
+				"y": 0,
+				"z": 0
+			},
+			"length": 3,
+			"entry": "AKA"
+		}],
+		"I": [{
+			"clue": "Place for the Times' times",
+			"start": {
+				"x": 1,
+				"y": 1,
+				"z": 0
+			},
+			"length": 6,
+			"entry": "KRONOS"
+		}]
+	}
+}
