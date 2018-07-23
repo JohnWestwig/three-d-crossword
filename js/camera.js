@@ -15,7 +15,7 @@ function init() {
     1000
   );
   //camera.position.z = 500;
-  camera.position.set(0, 0, 100);
+  camera.position.set(0, 0, 10);
 
   //controls
   controls = new THREE.TrackballControls( camera, renderer.domElement );

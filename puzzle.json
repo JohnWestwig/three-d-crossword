@@ -10,15 +10,15 @@
 		"author": "Jack Frysinger"
 	},
 	"puzzle_data": [{
-			"clue": "Food for a whiney horse",
-			"start": {
-				"x": 0,
-				"y": 0,
-				"z": 0
-			},
-			"direction": "x",
-			"entry": "HAY"
+		"clue": "Food for a whiney horse",
+		"start": {
+			"x": 0,
+			"y": 0,
+			"z": 0
 		},
+		"direction": "x",
+		"entry": "HAY"
+	},
 		{
 			"clue": "Pseudonym prefix",
 			"start": {

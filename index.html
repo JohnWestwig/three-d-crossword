@@ -10,7 +10,8 @@
 	</head>
 	<body>
 		<script src="js/three.js"></script>
-    <script src="js/model.js"></script>
+		<script id="puzzle" type="text/javascript" src="puzzle.json"></script>
+    	<script src="js/model.js"></script>
 		<script src="js/TrackballControls.js"></script>
 		<script src="js/camera.js"></script>
 		<script>
@@ -19,9 +20,12 @@
         //var renderer = new THREE.WebGLRenderer();
         //renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
-        const puzzleGroup = drawCrossword(scene);
-        camera.position.z = 10;
 
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
 
 		</script>
 	</body>
