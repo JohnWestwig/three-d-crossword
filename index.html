@@ -20,15 +20,20 @@
         //renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
 
-        const puzzleGroup = drawCrossword(scene);
+        var loader = new THREE.FontLoader();
 
-        camera.position.z = 10;
-        function animate() {
-        	requestAnimationFrame( animate );
-        	renderer.render( scene, camera );
-          puzzleGroup.rotation.y += .01;
-        }
-        animate();
+        loader.load('optimer_regular.typeface.json', (font) => {
+            const puzzleGroup = drawCrossword(scene, font);
+            camera.position.z = 10;
+            function animate() {
+                requestAnimationFrame( animate );
+                renderer.render( scene, camera );
+              puzzleGroup.rotation.y += .01;
+            }
+            animate();
+        })
+
+        
 		</script>
 	</body>
 </html>
