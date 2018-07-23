@@ -54,7 +54,7 @@ function drawText(letter) {
   xc.fillText(letter, 64, 96);
 
 
-  var xm = new THREE.MeshBasicMaterial({ map: new THREE.Texture(x), color: 0xFFFFFF });
+  var xm = new THREE.MeshBasicMaterial({ map: new THREE.Texture(x)});
   xm.map.needsUpdate = true;
   return xm;
 }
@@ -65,7 +65,7 @@ function drawCrossword(scene) {
   puzzle.words.forEach(w => {
     for (i = 0; i < w.length; i++) {
       const wordGroup = new THREE.Group();
-      puzzleGroup.add(wordGroup);
+      //puzzleGroup.add(wordGroup);
 
       var textMesh = drawText(w.answer[i]);
 
@@ -81,10 +81,11 @@ function drawCrossword(scene) {
       const cubePosition = w.startingPosition;
       cubePosition[w.direction] = boxSize * i;
       cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z)
-      wordGroup.add(cube);
+      //wordGroup.add(cube);
+      scene.add(cube);
     }
   });
 
-  scene.add(puzzleGroup);
+  //scene.add(puzzleGroup);
   return puzzleGroup;
 }

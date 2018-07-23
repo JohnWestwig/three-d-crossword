@@ -21,14 +21,20 @@
         document.body.appendChild( renderer.domElement );
 
         var loader = new THREE.FontLoader();
+        var mouse = new THREE.Vector2(), INTERSECTED;
+
 
         const puzzleGroup = drawCrossword(scene);
         camera.position.z = 10;
-        function animate() {
-          requestAnimationFrame( animate );
-          renderer.render( scene, camera );
+
+        function onDocumentMouseDown( event ) {
+            event.preventDefault();
+            mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+            mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+            //console.log(mouse);
         }
-        animate();
+
+        document.addEventListener( 'mousedown', onDocumentMouseDown, false );  
 
 
 		</script>
