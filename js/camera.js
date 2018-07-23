@@ -1,6 +1,3 @@
-import * as THREE from 'three'
-
-
 var camera, controls, scene, renderer;
 
 
