@@ -40,7 +40,23 @@ const puzzle = {
 
 const boxSize = 1;
 
-function drawCrossword(scene) {
+function drawText(cube, font) {
+  const geometry = new THREE.TextGeometry("T", {
+      font: font,
+      size: .5,
+      height: .7,
+      curveSegments: 2
+  });
+  const material = new THREE.MeshBasicMaterial( { color: 0xFF0000 } );
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(cube.position.x, cube.position.y, cube.position.z);
+  mesh.position.add(new THREE.Vector3(0, 0, 0));
+  console.log(mesh.position);
+
+  return mesh;
+}
+
+function drawCrossword(scene, font) {
   const puzzleGroup = new THREE.Group();
 
   puzzle.words.forEach(w => {
@@ -58,13 +74,17 @@ function drawCrossword(scene) {
       wireframe.renderOrder = 1; // make sure wireframes are rendered 2nd
       cube.add( wireframe );
 
-      wordGroup.add(cube);
-
       const cubePosition = w.startingPosition;
       cubePosition[w.direction] = boxSize * i;
       cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z)
+
+      var textMesh = drawText(cube, font);
+
+      wordGroup.add(cube);
+      wordGroup.add(textMesh);
     }
   });
+
   scene.add(puzzleGroup);
   return puzzleGroup;
 }

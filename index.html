@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<script src="js/three.js"></script>
-    <script src="js/model.js"></script>
+        <script src="js/model.js"></script>
 		<script>
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -18,15 +18,20 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
 
-        const puzzleGroup = drawCrossword(scene);
+        var loader = new THREE.FontLoader();
 
-        camera.position.z = 10;
-        function animate() {
-        	requestAnimationFrame( animate );
-        	renderer.render( scene, camera );
-          puzzleGroup.rotation.y += .01;
-        }
-        animate();
+        loader.load('optimer_regular.typeface.json', (font) => {
+            const puzzleGroup = drawCrossword(scene, font);
+            camera.position.z = 10;
+            function animate() {
+                requestAnimationFrame( animate );
+                renderer.render( scene, camera );
+              puzzleGroup.rotation.y += .01;
+            }
+            animate();
+        })
+
+        
 		</script>
 	</body>
 </html>
