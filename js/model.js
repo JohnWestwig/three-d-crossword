@@ -40,7 +40,7 @@ const puzzle = {
 
 const boxSize = 1;
 
-function drawText(font, letter) {
+function drawText(letter) {
   var x = document.createElement("canvas");
   var xc = x.getContext("2d");
   x.width = x.height = 128;
@@ -59,7 +59,7 @@ function drawText(font, letter) {
   return xm;
 }
 
-function drawCrossword(scene, font) {
+function drawCrossword(scene) {
   const puzzleGroup = new THREE.Group();
 
   puzzle.words.forEach(w => {
@@ -67,7 +67,7 @@ function drawCrossword(scene, font) {
       const wordGroup = new THREE.Group();
       puzzleGroup.add(wordGroup);
 
-      var textMesh = drawText(font, w.answer[i]);
+      var textMesh = drawText(w.answer[i]);
 
       const geometry = new THREE.BoxGeometry( boxSize, boxSize, boxSize );
       const cube = new THREE.Mesh( geometry, textMesh );
