@@ -17,8 +17,8 @@ Have you ever found yourself doing a crossword puzzle and thought to yourself, "
 	},
 	"puzzle_data": {
 		"A": [Entry],
-        "D": [Entry],
-        "I": [Entry]
+		"D": [Entry],
+		"I": [Entry]
 	}
 }
 ```
