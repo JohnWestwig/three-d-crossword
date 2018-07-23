@@ -40,20 +40,23 @@ const puzzle = {
 
 const boxSize = 1;
 
-function drawText(cube, font) {
-  const geometry = new THREE.TextGeometry("T", {
-      font: font,
-      size: .5,
-      height: .7,
-      curveSegments: 2
-  });
-  const material = new THREE.MeshBasicMaterial( { color: 0xFF0000 } );
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(cube.position.x, cube.position.y, cube.position.z);
-  mesh.position.add(new THREE.Vector3(0, 0, 0));
-  console.log(mesh.position);
+function drawText(font, letter) {
+  var x = document.createElement("canvas");
+  var xc = x.getContext("2d");
+  x.width = x.height = 128;
+  xc.fillStyle = "white";
+  xc.fillRect(0, 0, 128, 128);
+  xc.shadowColor = "#000";
+  xc.shadowBlur = 7;
+  xc.fillStyle = "black";
+  xc.font = "64pt arial bold";
+  xc.textAlign = 'center';
+  xc.fillText(letter, 64, 96);
 
-  return mesh;
+
+  var xm = new THREE.MeshBasicMaterial({ map: new THREE.Texture(x), color: 0xFFFFFF });
+  xm.map.needsUpdate = true;
+  return xm;
 }
 
 function drawCrossword(scene, font) {
@@ -64,9 +67,10 @@ function drawCrossword(scene, font) {
       const wordGroup = new THREE.Group();
       puzzleGroup.add(wordGroup);
 
+      var textMesh = drawText(font, w.answer[i]);
+
       const geometry = new THREE.BoxGeometry( boxSize, boxSize, boxSize );
-      const material = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
-      const cube = new THREE.Mesh( geometry, material );
+      const cube = new THREE.Mesh( geometry, textMesh );
 
       const geo = new THREE.EdgesGeometry( cube.geometry );
       const mat = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 4 } );
@@ -77,11 +81,7 @@ function drawCrossword(scene, font) {
       const cubePosition = w.startingPosition;
       cubePosition[w.direction] = boxSize * i;
       cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z)
-
-      var textMesh = drawText(cube, font);
-
       wordGroup.add(cube);
-      wordGroup.add(textMesh);
     }
   });
 
