@@ -3,9 +3,6 @@ import * as THREE from 'three'
 
 var camera, controls, scene, renderer;
 
-init();
-
-animate();
 
 function init() {
 
@@ -45,3 +42,7 @@ function animate() {
 function render(){
   renderer.render(scene, camera);
 }
+
+init();
+
+animate();
