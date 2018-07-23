@@ -11,7 +11,7 @@ function init() {
     0.1,
     1000
   );
-  camera.position.set(0, 0, 0);
+  camera.position.set(0, 0, 100);
 
   //controls
   controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -22,7 +22,7 @@ function init() {
 
   controls.screenSpacePanning = false;
 
-  controls.minDistance = 100;
+  controls.minDistance = -100;
   controls.maxDistance = 500;
 
   controls.maxPolarAngle = Math.PI / 2;
