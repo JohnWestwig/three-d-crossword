@@ -89,7 +89,7 @@ loadJSON(function(response) {
             var w = puzzle.puzzle_data[j];
             //puzzle.puzzle_data.forEach(w => {
             console.log(puzzle.puzzle_data[j]);
-            for (i = 0; i < w.length; i++) {
+            for (i = 0; i < w.entry.length; i++) {
                 const wordGroup = new THREE.Group();
                 puzzleGroup.add(wordGroup);
 
