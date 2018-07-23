@@ -14,7 +14,7 @@ function init() {
   camera.position.set(0, 0, 100);
 
   //controls
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new THREE.TrackballControls(camera, renderer.domElement);
 
   //controls.addEventListener('change', render); //call only in static scenes
   controls.enableDamping = true;
