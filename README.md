@@ -18,23 +18,14 @@ Just clone the repo and open `index.html`.
 		"depth": Integer,
 		"author": String
 	},
-	"puzzle_data": {
-		"A": [Entry],
-		"D": [Entry],
-		"I": [Entry]
-	}
-}
-```
-
-## Entry format
-```
-{
-	"clue": String,
-	"start": {
-		"x": Integer,
-		"y": Integer,
-		"z": Integer
-	},
-	"entry": String
+	"puzzle_data": [{
+		"clue": String,
+		"start": {
+			"x": Integer,
+			"y": Integer,
+			"z": Integer
+		},
+		"entry": String
+	}]
 }
 ```

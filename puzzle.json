@@ -9,33 +9,35 @@
 		"depth": 6,
 		"author": "Jack Frysinger"
 	},
-	"puzzle_data": {
-		"A": [{
+	"puzzle_data": [{
 			"clue": "Food for a whiney horse",
 			"start": {
 				"x": 0,
 				"y": 0,
 				"z": 0
 			},
+			"direction": "x",
 			"entry": "HAY"
-		}],
-		"D": [{
+		},
+		{
 			"clue": "Pseudonym prefix",
 			"start": {
 				"x": 1,
 				"y": 0,
 				"z": 0
 			},
+			"direction": "y",
 			"entry": "AKA"
-		}],
-		"I": [{
+		},
+		{
 			"clue": "Place for the Times' times",
 			"start": {
 				"x": 1,
 				"y": 1,
 				"z": 0
 			},
+			"direction": "z",
 			"entry": "KRONOS"
-		}]
-	}
+		}
+	]
 }
