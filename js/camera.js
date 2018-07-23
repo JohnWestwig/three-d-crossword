@@ -1,5 +1,5 @@
-<script src = "three.js-master/src/THREE.js"></script>
-<script src = "three.js-master/src/cameras/PerspectiveCamera.js"></script>
+import * as THREE from 'three'
+
 var camera, controls, scene, renderer;
 
 init();
