@@ -1,9 +1,9 @@
 var camera, controls, scene, renderer;
 
 function init() {
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    scene = new THREE.Scene();
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  scene = new THREE.Scene();
 
   camera = new THREE.PerspectiveCamera(
     75,
