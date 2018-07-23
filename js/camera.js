@@ -1,15 +1,16 @@
-import * as THREE from 'three'
-
-
 var camera, controls, scene, renderer;
 
-init();
-
-animate();
-
 function init() {
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  scene = new THREE.Scene();
 
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
   camera.position.set(0, 0, 0);
 
   //controls
@@ -26,7 +27,7 @@ function init() {
 
   controls.maxPolarAngle = Math.PI / 2;
 
-  window.addEventListener('resize', onWindowResize, false);
+  window.addEventListener("resize", onWindowResize, false);
 }
 
 function onWindowResize() {
@@ -42,6 +43,10 @@ function animate() {
   render();
 }
 
-function render(){
+function render() {
   renderer.render(scene, camera);
 }
+
+init();
+
+animate();
