@@ -10,8 +10,8 @@
 	</head>
 	<body>
 		<script src="js/three.js"></script>
-    	<script src="js/model.js"></script>
-		<script src="js/OrbitControls.js"></script>
+    <script src="js/model.js"></script>
+		<script src="js/TrackballControls.js"></script>
 		<script src="js/camera.js"></script>
 		<script>
         //var scene = new THREE.Scene();
@@ -19,22 +19,8 @@
         //var renderer = new THREE.WebGLRenderer();
         //renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
-
-        var loader = new THREE.FontLoader();
-        var mouse = new THREE.Vector2(), INTERSECTED;
-
-
         const puzzleGroup = drawCrossword(scene);
         camera.position.z = 10;
-
-        function onDocumentMouseDown( event ) {
-            event.preventDefault();
-            mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-            mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-            //console.log(mouse);
-        }
-
-        document.addEventListener( 'mousedown', onDocumentMouseDown, false );  
 
 
 		</script>
