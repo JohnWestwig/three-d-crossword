@@ -1,9 +1,8 @@
-var camera, controls, scene, renderer, stats;
+var camera, controls, scene, renderer;
 
 function init() {
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize(window.innerWidth, window.innerHeight);
-  stats = new Stats();
   scene = new THREE.Scene();
 
   camera = new THREE.PerspectiveCamera(
@@ -16,7 +15,8 @@ function init() {
   camera.position.set(0, 0, 100);
 
   //controls
-  controls = new THREE.TrackballControls( camera );
+  controls = new THREE.TrackballControls( camera, renderer.domElement );
+  //controls.target.set( 0, 0, 0 );
   //controls.addEventListener('change', render); //call only in static scenes
   controls.rotateSpeed = 1.0;
   controls.zoomSpeed = 1.2;
@@ -30,7 +30,7 @@ function init() {
 
   controls.keys = [ 65, 83, 68 ];
 
-  controls.addEventListener( 'change', render);
+  //controls.addEventListener( 'change', render);
 
   /*controls.enableDamping = true;
   controls.dampingFactor = 0.25;
@@ -43,7 +43,7 @@ function init() {
   controls.maxPolarAngle = Math.PI / 2;*/
 
   window.addEventListener( "resize", onWindowResize, false );
-  render();
+  //render();
 }
 
 function onWindowResize() {
@@ -63,7 +63,7 @@ function animate() {
 
 function render() {
   renderer.render( scene, camera );
-  stats.update();
+  //stats.update();
 }
 
 init();
