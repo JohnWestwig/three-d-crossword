@@ -110,12 +110,12 @@ loadJSON(function(response) {
 
         const cubePosition = w.start;
         cubePosition[w.direction] = boxSize * i;
-        cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z);
-        wordGroup.add(cube);
+        cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z)
+
+        scene.add(cube);
+
       }
     }
-
-    scene.add(puzzleGroup);
     return puzzleGroup;
   }
 
