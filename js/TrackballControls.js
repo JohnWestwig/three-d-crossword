@@ -621,6 +621,13 @@ THREE.TrackballControls = function ( object, x, y, z, domElement ) {
 	// force an update at start
 	this.update();
 
+	var context = this;
+    document.addEventListener ("keydown", function (zEvent) {
+        if (zEvent.altKey  &&  zEvent.which == 70) {
+            context.reset();
+        }
+    });
+
 };
 
 THREE.TrackballControls.prototype = Object.create( THREE.EventDispatcher.prototype );
