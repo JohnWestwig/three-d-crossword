@@ -18,7 +18,7 @@ function init() {
   camera.position.set(0, 0, 10);
 
   //controls
-  controls = new THREE.TrackballControls( camera, renderer.domElement );
+  controls = new THREE.TrackballControls( camera);
   //controls.target.set( 0, 0, 0 );
   //controls.addEventListener('change', render); //call only in static scenes
   controls.rotateSpeed = 1.0;
@@ -33,7 +33,7 @@ function init() {
 
   controls.keys = [ 65, 83, 68 ];
 
-  //controls.addEventListener( 'change', render);
+  //controls.addEventListener('change', render);
 
   /*controls.enableDamping = true;
   controls.dampingFactor = 0.25;
@@ -72,7 +72,7 @@ function animate() {
 }
 
 function render() {
-  console.log(scene.children);
+  //console.log(scene.children);
   camera.updateMatrixWorld();
   raycaster.setFromCamera( mouse, camera );
   var intersects = raycaster.intersectObjects(scene.children);
