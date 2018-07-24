@@ -46,7 +46,8 @@ function init() {
   controls.maxPolarAngle = Math.PI / 2;*/
 
   window.addEventListener("resize", onWindowResize, false);
-  document.addEventListener( 'mousedown', onDocumentMouseDown, false );  
+  document.addEventListener( 'mousedown', onDocumentMouseDown, false );   
+  document.addEventListener("keydown", onDocumentKeyDown, false);
 
 }
 
@@ -63,6 +64,13 @@ function onDocumentMouseDown( event ) {
     event.preventDefault();
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+}
+
+function onDocumentKeyDown( event ) {
+  const keyCode = event.which;
+  //console.log("This was the key that was pressed: "+keyCode);
+
+  //TODO: On Key Pressed Logic
 }
 
 function animate() {
