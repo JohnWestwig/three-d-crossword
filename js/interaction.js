@@ -40,11 +40,15 @@ function onDocumentKeyDown( event ) {
 
     var clicked = INTERSECTED;
     var newPosition = INTERSECTED.position.clone();
-    if (INTERSECTED.word.direction === 'y') {
-      newPosition[INTERSECTED.word.direction] -= 1;
+    console.log(INTERSECTED.words);
+    if (INTERSECTED.words['y']) {
+      newPosition['y'] -= 1;
+    } else if (INTERSECTED.words['x']) {
+      newPosition['x'] += 1;
     } else {
-      newPosition[INTERSECTED.word.direction] += 1;
+      newPosition['z'] += 1;
     }
+
     console.log("Old Position: ",INTERSECTED);
     var nextBlock = scene.getObjectByName(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
     if (nextBlock) {

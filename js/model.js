@@ -92,11 +92,13 @@ loadJSON(function(response) {
                 originalPosition = originalPosition + 1;
 
                 cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
-
-                cube.word = w;
+                cube.words = {};
+                cube.words[w.direction] = w.entry;
 
                 if (!scene.getObjectByName(cube.name)) {
                     scene.add(cube);
+                } else {
+                  scene.getObjectByName(cube.name).words[w.direction] = w.entry;
                 }
             }
         }
