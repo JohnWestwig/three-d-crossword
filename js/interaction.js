@@ -38,6 +38,7 @@ function onDocumentKeyDown( event ) {
     INTERSECTED.material.map = cmap;
     INTERSECTED.material.map.needsUpdate = true;
 
+    // click -> set global state variable to 0, click again and increment variable..pass variable into object name argument
     var clicked = INTERSECTED;
     var newPosition = INTERSECTED.position.clone();
     if (INTERSECTED.word.direction === 'y') {
