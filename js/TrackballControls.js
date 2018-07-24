@@ -623,7 +623,7 @@ THREE.TrackballControls = function ( object, x, y, z, domElement ) {
 
 	var context = this;
     document.addEventListener ("keydown", function (zEvent) {
-        if (zEvent.altKey  &&  zEvent.which == 70) {
+        if (zEvent.altKey) {
             context.reset();
         }
     });
