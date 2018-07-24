@@ -46,20 +46,21 @@ function onDocumentKeyDown( event ) {
         INTERSECTED.material.map = cmap;
         INTERSECTED.material.map.needsUpdate = true;
 
+
         // click -> set global state variable to 0, click again and increment variable..pass variable into object name argument
         var clicked = INTERSECTED;
         var newPosition = INTERSECTED.position.clone();
         if (!window.hasOwnProperty("directionIndex")) {
-            directionIndex = 0
+          directionIndex = 0
         }
         var keys = Object.keys(INTERSECTED.words);
         var dir = keys[directionIndex % keys.length];
         if (dir === 'y') {
-            newPosition[dir] -= 1;
+          newPosition[dir] -= 1;
         } else {
-            newPosition[dir] += 1;
+          newPosition[dir] += 1;
         }
-
+      
         console.log("Old Position: ", INTERSECTED);
         var nextBlock = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
         if (nextBlock) {
