@@ -18,11 +18,11 @@ function init() {
   camera.position.set(0, 0, 10);
 
   //controls
-  controls = new THREE.TrackballControls( camera);
-  //controls.target.set( 0, 0, 0 );
+  controls = new THREE.TrackballControls(camera);
+
   //controls.addEventListener('change', render); //call only in static scenes
-  controls.rotateSpeed = 1.0;
-  controls.zoomSpeed = 1.2;
+  controls.rotateSpeed = 5.0;
+  controls.zoomSpeed = 8.0;
   controls.panSpeed = 0.8;
 
   controls.noZoom = false;
