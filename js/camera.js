@@ -3,6 +3,7 @@ var mouse = new THREE.Vector2(), INTERSECTED;
 
 
 function init() {
+  console.log('init');
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize(window.innerWidth, window.innerHeight);
   scene = new THREE.Scene();
