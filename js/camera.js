@@ -69,8 +69,26 @@ function onDocumentMouseDown( event ) {
 function onDocumentKeyDown( event ) {
   const keyCode = event.which;
   //console.log("This was the key that was pressed: "+keyCode);
-
   //TODO: On Key Pressed Logic
+  if ( INTERSECTED ) {
+    var x = document.createElement("canvas");
+    var xc = x.getContext("2d");
+    x.width = x.height = 128;
+    xc.fillStyle = "white";
+    xc.fillRect(0, 0, 128, 128);
+    xc.shadowColor = "#000";
+    xc.shadowBlur = 7;
+    xc.fillStyle = "black";
+    xc.font = "64pt arial bold";
+    xc.textAlign = "center";
+    xc.fillText(String.fromCharCode(keyCode), 64, 96);
+
+    var cmap = new THREE.Texture(x);
+    INTERSECTED.material.map = cmap;
+    INTERSECTED.material.map.needsUpdate = true;
+    //INTERSECTED.material.color.setHex(0x00FF00);
+    //INTERSECTED.material.needsUpdate = true;
+  } 
 }
 
 function animate() {
