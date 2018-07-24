@@ -34,8 +34,8 @@ function init() {
   controls.noZoom = false;
   controls.noPan = false;
 
-  controls.staticMoving = true;
-  controls.dynamicDampingFactor = 0.3;
+  controls.staticMoving = false;
+  controls.dynamicDampingFactor = 0.2;
 
   controls.keys = [ 65, 83, 68 ];
 
