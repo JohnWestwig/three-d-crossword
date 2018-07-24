@@ -14,6 +14,11 @@ function onDocumentMouseDown( event ) {
     }
     INTERSECTED = intersects[ 0 ].object;
     INTERSECTED.material.color.set( 0xFCD931 );
+  } else {
+    if (!window.hasOwnProperty("directionIndex")) {
+      directionIndex = 0
+    }
+    directionIndex = directionIndex + 1 % 2;
   }
 }
 
@@ -41,13 +46,15 @@ function onDocumentKeyDown( event ) {
     // click -> set global state variable to 0, click again and increment variable..pass variable into object name argument
     var clicked = INTERSECTED;
     var newPosition = INTERSECTED.position.clone();
-    console.log(INTERSECTED.words);
-    if (INTERSECTED.words['y']) {
-      newPosition['y'] -= 1;
-    } else if (INTERSECTED.words['x']) {
-      newPosition['x'] += 1;
+    if (!window.hasOwnProperty("directionIndex")) {
+      directionIndex = 0
+    }
+    var keys = Object.keys(INTERSECTED.words);
+    var dir = keys[directionIndex % keys.length];
+    if (dir === 'y') {
+      newPosition[dir] -= 1;
     } else {
-      newPosition['z'] += 1;
+      newPosition[dir] += 1;
     }
 
     console.log("Old Position: ",INTERSECTED);
