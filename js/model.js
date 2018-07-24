@@ -86,6 +86,7 @@ loadJSON(function(response) {
 
   function drawCrossword(scene) {
     const puzzleGroup = new THREE.Group();
+    console.log("Drawing crossword")
 
     var j;
     for (j = 0; j < puzzle.puzzle_data.length; j++) {
@@ -112,8 +113,11 @@ loadJSON(function(response) {
         cubePosition[w.direction] = boxSize * i;
         cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z)
 
-        scene.add(cube);
+        cube.name = `${cubePosition.x}-${cubePosition.y}-${cubePosition.z}`;
 
+        if (!scene.getObjectByName(cube.name)) {
+          scene.add(cube);
+        }
       }
     }
     return puzzleGroup;
