@@ -86,7 +86,6 @@ loadJSON(function(response) {
 
   function drawCrossword(scene) {
     const puzzleGroup = new THREE.Group();
-    console.log("Drawing crossword")
 
     var j;
     for (j = 0; j < puzzle.puzzle_data.length; j++) {
