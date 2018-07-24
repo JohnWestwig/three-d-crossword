@@ -18,10 +18,14 @@ function onDocumentMouseDown( event ) {
 }
 
 function onDocumentKeyDown( event ) {
+    if (event.altKey  &&  event.which == 70) {
+        context.reset();
+    }
   const keyCode = event.which;
   //console.log("This was the key that was pressed: "+keyCode);
   //TODO: On Key Pressed Logic
   if ( INTERSECTED ) {
+
     var x = document.createElement("canvas");
     var xc = x.getContext("2d");
     x.width = x.height = 128;
