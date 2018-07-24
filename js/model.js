@@ -63,9 +63,6 @@ loadJSON(function(response) {
                 const wordGroup = new THREE.Group();
                 puzzleGroup.add(wordGroup);
 
-                cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
-
-                cube.word = w;
                 var textMesh = drawText(w.entry[i]);
 
                 const geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize);
@@ -84,6 +81,10 @@ loadJSON(function(response) {
                 cubePosition[w.direction] = boxSize * originalPosition;
                 cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z);
                 originalPosition = originalPosition + 1;
+
+                cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
+
+                cube.word = w;
 
                 if (!scene.getObjectByName(cube.name)) {
                     scene.add(cube);

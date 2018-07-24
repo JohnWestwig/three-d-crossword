@@ -90,10 +90,21 @@ function onDocumentKeyDown( event ) {
 
     var clicked = INTERSECTED;
     var newPosition = INTERSECTED.position.clone();
-    newPosition[INTERSECTED.word.direction] += 1;
-    console.log("Old intersects: "+INTERSECTED);
-    console.log(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
-    INTERSECTED = scene.getObjectByName(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
+    if (INTERSECTED.word.direction === 'y') {
+      newPosition[INTERSECTED.word.direction] -= 1;
+    } else {
+      newPosition[INTERSECTED.word.direction] += 1;
+    }
+    console.log("Old Position: ",INTERSECTED);
+    var nextBlock = scene.getObjectByName(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
+    if (nextBlock) {
+      INTERSECTED.material.color.setHex( 0xFFFFFF );
+      INTERSECTED = scene.getObjectByName(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
+      INTERSECTED.material.color.setHex( 0xff0000 );
+    }
+   
+
+    ACTIVE_SQUARE = INTERSECTED;
     console.log("New intersects: ",INTERSECTED);
 
   } 
@@ -111,18 +122,16 @@ function render() {
   raycaster.setFromCamera( mouse, camera );
   var intersects = raycaster.intersectObjects(scene.children);
   if ( intersects.length > 0 ) {
-    if ( INTERSECTED != intersects[ 0 ].object ) {
+    if ( INTERSECTED != intersects[ 0 ].object && !ACTIVE_SQUARE ) {
       if ( INTERSECTED ) {
         INTERSECTED.material.color.setHex( 0xFFFFFF );
       }
       INTERSECTED = intersects[ 0 ].object;
+      ACTIVE_SQUARE = INTERSECTED;
       INTERSECTED.material.color.setHex( 0xff0000 );
     }
   } else {
-    if ( INTERSECTED ) {
-      INTERSECTED.material.color.setHex( 0xFFFFFF );
-    }
-    INTERSECTED = null;
+    ACTIVE_SQUARE = null;
   }
   renderer.render(scene, camera);
 
