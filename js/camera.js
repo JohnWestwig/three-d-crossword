@@ -16,10 +16,16 @@ function init() {
     1000
   );
   //camera.position.z = 500;
-  camera.position.set(0, 0, 10);
 
-  //controls
-  controls = new THREE.TrackballControls(camera);
+    //find puzzle center
+    var xCenter = dimension.x / 2.0;
+    var yCenter = dimension.y / 2.0;
+    var zCenter = dimension.z / 2.0;
+
+  camera.position.set(xCenter, -yCenter, dimension.z  + 5);
+
+    //controls
+  controls = new THREE.TrackballControls(camera, xCenter, yCenter, zCenter);
 
   controls.rotateSpeed = 5.0;
   controls.zoomSpeed = 8.0;
