@@ -1,9 +1,9 @@
 var camera, controls, scene, renderer, raycaster;
 var mouse = new THREE.Vector2(), INTERSECTED, ACTIVE_SQUARE;
 
-
 function init() {
   console.log('init');
+  console.log(dimension);
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize(window.innerWidth, window.innerHeight);
   scene = new THREE.Scene();
@@ -21,7 +21,6 @@ function init() {
   //controls
   controls = new THREE.TrackballControls(camera);
 
-  //controls.addEventListener('change', render); //call only in static scenes
   controls.rotateSpeed = 5.0;
   controls.zoomSpeed = 8.0;
   controls.panSpeed = 0.8;
@@ -33,18 +32,6 @@ function init() {
   controls.dynamicDampingFactor = 0.3;
 
   controls.keys = [ 65, 83, 68 ];
-
-  //controls.addEventListener('change', render);
-
-  /*controls.enableDamping = true;
-  controls.dampingFactor = 0.25;
-
-  controls.screenSpacePanning = false;
-
-  controls.minDistance = -100;
-  controls.maxDistance = 500;
-
-  controls.maxPolarAngle = Math.PI / 2;*/
 
   window.addEventListener("resize", onWindowResize, false);
   document.addEventListener( 'mousedown', onDocumentMouseDown, false );   
@@ -62,9 +49,22 @@ function onWindowResize() {
 }
 
 function onDocumentMouseDown( event ) {
-    event.preventDefault();
-    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+  event.preventDefault();
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+  camera.updateMatrixWorld();
+  raycaster.setFromCamera( mouse, camera );
+
+  var intersects = raycaster.intersectObjects(scene.children);
+  if ( INTERSECTED != intersects[ 0 ].object) {
+    if ( INTERSECTED ) {
+      INTERSECTED.material.color.setHex( 0xFFFFFF );
+    }
+    INTERSECTED = intersects[ 0 ].object;
+    INTERSECTED.material.color.set( 0xFCD931 );
+  }
 }
 
 function onDocumentKeyDown( event ) {
@@ -100,15 +100,14 @@ function onDocumentKeyDown( event ) {
     if (nextBlock) {
       INTERSECTED.material.color.setHex( 0xFFFFFF );
       INTERSECTED = scene.getObjectByName(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
-      INTERSECTED.material.color.setHex( 0xff0000 );
+      INTERSECTED.material.color.setHex( 0xFCD931 );
     }
    
-
-    ACTIVE_SQUARE = INTERSECTED;
     console.log("New intersects: ",INTERSECTED);
 
   } 
 }
+
 
 function animate() {
   requestAnimationFrame( animate );
@@ -117,26 +116,9 @@ function animate() {
 }
 
 function render() {
-  //console.log(scene.children);
-  camera.updateMatrixWorld();
-  raycaster.setFromCamera( mouse, camera );
-  var intersects = raycaster.intersectObjects(scene.children);
-  if ( intersects.length > 0 ) {
-    if ( INTERSECTED != intersects[ 0 ].object && !ACTIVE_SQUARE ) {
-      if ( INTERSECTED ) {
-        INTERSECTED.material.color.setHex( 0xFFFFFF );
-      }
-      INTERSECTED = intersects[ 0 ].object;
-      ACTIVE_SQUARE = INTERSECTED;
-      INTERSECTED.material.color.setHex( 0xff0000 );
-    }
-  } else {
-    ACTIVE_SQUARE = null;
-  }
   renderer.render(scene, camera);
-
 }
 
-init();
-
-animate();
+// init();
+//
+// animate();
