@@ -38,6 +38,16 @@
 			},
 			"direction": "z",
 			"entry": "KRONOS"
+		},
+		{
+			"clue": "Nice location within France",
+			"start": {
+				"x": 1,
+				"y": 1,
+				"z": 5
+			},
+			"direction": "y",
+			"entry": "SUD"
 		}
 	]
 }
