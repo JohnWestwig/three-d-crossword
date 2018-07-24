@@ -112,7 +112,9 @@ loadJSON(function(response) {
         cubePosition[w.direction] = boxSize * i;
         cube.position.set(cubePosition.x, -cubePosition.y, cubePosition.z)
 
-        cube.name = `${cubePosition.x}-${cubePosition.y}-${cubePosition.z}`;
+        cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
+
+        cube.word = w;
 
         if (!scene.getObjectByName(cube.name)) {
           scene.add(cube);

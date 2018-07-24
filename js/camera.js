@@ -1,5 +1,5 @@
 var camera, controls, scene, renderer, raycaster;
-var mouse = new THREE.Vector2(), INTERSECTED;
+var mouse = new THREE.Vector2(), INTERSECTED, ACTIVE_SQUARE;
 
 
 function init() {
@@ -86,8 +86,15 @@ function onDocumentKeyDown( event ) {
     var cmap = new THREE.Texture(x);
     INTERSECTED.material.map = cmap;
     INTERSECTED.material.map.needsUpdate = true;
-    //INTERSECTED.material.color.setHex(0x00FF00);
-    //INTERSECTED.material.needsUpdate = true;
+
+    var clicked = INTERSECTED;
+    var newPosition = INTERSECTED.position.clone();
+    newPosition[INTERSECTED.word.direction] += 1;
+    console.log("Old intersects: "+INTERSECTED);
+    console.log(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
+    INTERSECTED = scene.getObjectByName(newPosition.x+"-"+newPosition.y+"-"+newPosition.z);
+    console.log("New intersects: ",INTERSECTED);
+
   } 
 }
 
