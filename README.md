@@ -25,6 +25,7 @@ Just clone the repo and open `index.html`.
 			"y": Integer,
 			"z": Integer
 		},
+		"direction": "A" | "D" | "I",
 		"entry": String
 	}]
 }
