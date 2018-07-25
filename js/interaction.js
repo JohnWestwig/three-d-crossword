@@ -18,14 +18,6 @@ function onDocumentMouseDown( event ) {
     }
     INTERSECTED = intersects[ 0 ].object;
 
-    //get directionIndex
-    //find which word letter belongs to based on directionIndex
-    //color all other blocks blue in that word
-    //But also delete any other blue blocks in other directions
-      
-
-    //display clue
-
   } else {
     directionIndex = (directionIndex + 1) % 3;
     // console.log("direction index: ", directionIndex)
