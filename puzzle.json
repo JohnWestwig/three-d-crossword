@@ -48,6 +48,16 @@
 			},
 			"direction": "y",
 			"entry": "SUD"
+		},
+		{
+			"clue": "JF, sporadically",
+			"start": {
+				"x": 1,
+				"y": 1,
+				"z": 2
+			},
+			"direction": "x",
+			"entry": "OOO"
 		}
 	]
 }
