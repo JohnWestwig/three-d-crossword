@@ -110,11 +110,16 @@ var loadPuzzle = () => {
                 cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
                 cube.words = {};
                 cube.words[w.direction] = w.entry;
+                cube.clues = {};
+                cube.clues[w.direction] = w.clue;
+                cube.correctValue = w.entry[i];
+
 
                 if (!scene.getObjectByName(cube.name)) {
                     scene.add(cube);
                 } else {
                   scene.getObjectByName(cube.name).words[w.direction] = w.entry;
+                    scene.getObjectByName(cube.name).clues[w.direction] = w.clue;
                 }
             }
         }

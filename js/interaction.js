@@ -46,7 +46,7 @@ function onDocumentMouseDown( event ) {
       onDocumentMouseDown(event);
   }
   document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
-
+  console.log("HI");
   INTERSECTED.material.color.set( 0xFCD931 );
 }
 
