@@ -54,7 +54,7 @@ function onDocumentKeyDown( event ) {
   //console.log("This was the key that was pressed: "+keyCode);
   //TODO: On Key Pressed Logic
   if ( INTERSECTED ) {
-      if ((keyCode >= 65 && keyCode <= 120) || (keyCode == 32 && keyCode == 0)) {
+      if ((keyCode >= 65 && keyCode <= 120) || (keyCode == 32 && keyCode == 0) || keyCode === 8) {
           var x = document.createElement("canvas");
           var xc = x.getContext("2d");
           x.width = x.height = 128;
@@ -65,7 +65,7 @@ function onDocumentKeyDown( event ) {
           xc.fillStyle = "black";
           xc.font = "64pt arial bold";
           xc.textAlign = "center";
-          xc.fillText(String.fromCharCode(keyCode), 64, 96);
+          xc.fillText(keyCode === 8 ? "" : String.fromCharCode(keyCode), 64, 96);
 
           var cmap = new THREE.Texture(x);
           INTERSECTED.material.map = cmap;
@@ -83,9 +83,9 @@ function onDocumentKeyDown( event ) {
               onDocumentKeyDown(event);
           }
           if (dir === 'y') {
-              newPosition[dir] -= 1;
+              newPosition[dir] -= keyCode === 8 ? -1 : 1 ;
           } else {
-              newPosition[dir] += 1;
+              newPosition[dir] += keyCode === 8 ? -1 : 1 ;
           }
 
           console.log("Old Position: ", INTERSECTED);
