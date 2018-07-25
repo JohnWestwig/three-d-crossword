@@ -46,8 +46,6 @@ var loadPuzzle = () => {
         x.width = x.height = 128;
         xc.fillStyle = "white";
         xc.fillRect(0, 0, 128, 128);
-        xc.shadowColor = "#000";
-        xc.shadowBlur = 7;
         xc.fillStyle = "black";
         xc.font = "64pt arial bold";
         xc.textAlign = "center";
