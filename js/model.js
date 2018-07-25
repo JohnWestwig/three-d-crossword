@@ -58,10 +58,7 @@ loadJSON(function(response) {
     }
 
     function drawCrossword(scene) {
-
-
         const puzzleGroup = new THREE.Group();
-
         var j;
         for (j = 0; j < puzzle.puzzle_data.length; j++) {
             var w = puzzle.puzzle_data[j];
@@ -99,7 +96,9 @@ loadJSON(function(response) {
                     scene.add(cube);
                 } else {
                   scene.getObjectByName(cube.name).words[w.direction] = w.entry;
+                  scene.getObjectByName(cube.name).clues[w.direction] = w.clue;
                 }
+                console.log(cube.clues, cube.words);
             }
         }
         return puzzleGroup;

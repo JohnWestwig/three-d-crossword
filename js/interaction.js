@@ -19,6 +19,7 @@ function onDocumentMouseDown( event ) {
     //find which word letter belongs to based on directionIndex
     //color all other blocks blue in that word
     //But also delete any other blue blocks in other directions
+      
 
     //display clue
 
