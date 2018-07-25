@@ -113,6 +113,8 @@ var loadPuzzle = () => {
                 cube.clues = {};
                 cube.clues[w.direction] = w.clue;
                 cube.correctValue = w.entry[i];
+                cube.start = {};
+                cube.start[w.direction]  = w.start;
 
 
                 if (!scene.getObjectByName(cube.name)) {
@@ -120,6 +122,7 @@ var loadPuzzle = () => {
                 } else {
                   scene.getObjectByName(cube.name).words[w.direction] = w.entry;
                     scene.getObjectByName(cube.name).clues[w.direction] = w.clue;
+                    scene.getObjectByName(cube.name).start[w.direction] = w.start;
                 }
             }
         }
