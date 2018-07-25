@@ -9,11 +9,14 @@ function onDocumentMouseDown( event ) {
 
   var intersects = raycaster.intersectObjects(scene.children);
 
-  if ( INTERSECTED != intersects[ 0 ].object) {
+  if ( intersects.length > 0 && INTERSECTED != intersects[ 0 ].object) {
+
     if ( INTERSECTED ) {
+
       INTERSECTED.material.color.setHex( 0xFFFFFF );
     }
     INTERSECTED = intersects[ 0 ].object;
+
     //get directionIndex
     //find which word letter belongs to based on directionIndex
     //color all other blocks blue in that word
