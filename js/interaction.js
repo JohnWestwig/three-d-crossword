@@ -67,8 +67,7 @@ function onDocumentKeyDown( event ) {
   //TODO: On Key Pressed Logic
   if (keyCode == 220) {
     console.log("oh my");
-    resetScene();
-    loadPuzzle();
+    resetScene("puzzle.json");
     return;
   }
   if ( INTERSECTED ) {
@@ -125,13 +124,16 @@ function onDocumentKeyDown( event ) {
   }
 }
 
-function resetScene() {
+function resetScene(nextPuzzle) {
+  puzzleName = nextPuzzle;
   cancelAnimationFrame(this.id);// Stop the animation
   document.body.removeChild(renderer.domElement);
   scene = null;
   projector = null;
   camera = null;
   controls = null;
+  loadPuzzle();
+
 }
 
 function gameOver(scene) {
