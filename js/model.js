@@ -49,7 +49,7 @@ loadJSON(function(response) {
         xc.fillStyle = "black";
         xc.font = "64pt arial bold";
         xc.textAlign = "center";
-        xc.fillText(letter, 64, 96);
+        //xc.fillText(letter, 64, 96);
 
         var xm = new THREE.MeshBasicMaterial({
             map: new THREE.Texture(x),
@@ -109,8 +109,6 @@ loadJSON(function(response) {
         }
         return puzzleGroup;
     }
-    
+
     const puzzleGroup = drawCrossword(scene);
 });
-
-
