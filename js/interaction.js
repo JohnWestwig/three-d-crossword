@@ -40,7 +40,7 @@ function onDocumentMouseDown( event ) {
   const activeWord = INTERSECTED.words[["x", "y", "z"][directionIndex]]
   scene.children.forEach(cube => {
     if (activeWord && cube.words[["x", "y", "z"][directionIndex]] === activeWord) {
-      cube.material.color.set(0x006600);
+      cube.material.color.set(0xAEDAF5);
     } else {
       cube.material.color.set(0xFFFFFF);
     }
@@ -98,9 +98,7 @@ function onDocumentKeyDown( event ) {
               INTERSECTED = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
               INTERSECTED.material.color.setHex(0xFCD931);
           }
-
           console.log("New intersects: ", INTERSECTED);
-
       }
   }
 }
