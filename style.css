@@ -1,15 +1,11 @@
 .row {
   font-family: arial;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .column {
-  float: left;
-  width: 33.33%;
-}
-
-.clues {
-  overflow: scroll;
+  overflow-y: scroll;
+  height:200px;
 }
 
 .hamburger {
@@ -31,12 +27,12 @@
 
 nav {
   background-color: white;
-  opacity: 0.9;
+  opacity: 0.8;
   display: inline-block;
   position: fixed;
   height: 100vh;
-  width: 500px;
-  left: -500px;
+  width: 225px;
+  left: -225px;
   -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
 }
@@ -64,9 +60,9 @@ nav, .hamburger, .cover {
 }
 
 .sidenav-active nav, .sidenav-active .hamburger, .sidenav-active .cover {
-  -webkit-transform: translateX(500px);
-  -ms-transform: translateX(500px);
-  transform: translateX(500px);
+  -webkit-transform: translateX(225px);
+  -ms-transform: translateX(225px);
+  transform: translateX(225px);
 }
 
 .main {
@@ -74,4 +70,4 @@ nav, .hamburger, .cover {
   transition: margin-left .3s;
 }
 
-.sidenav-active .main { margin-left: 500px; }
+.sidenav-active .main { margin-left: 225px; }
