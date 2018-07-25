@@ -72,10 +72,14 @@ loadJSON(function(response) {
                 const wordGroup = new THREE.Group();
                 puzzleGroup.add(wordGroup);
 
-                var textMesh = drawText(w.entry[i]);
+                //Should be set to ""
+                var textMesh = drawText("");
 
                 const geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize);
                 const cube = new THREE.Mesh(geometry, textMesh);
+
+                cube.currentValue = "";
+                
 
                 const geo = new THREE.EdgesGeometry(cube.geometry);
                 const mat = new THREE.LineBasicMaterial({
@@ -94,6 +98,7 @@ loadJSON(function(response) {
                 cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
                 cube.words = {};
                 cube.words[w.direction] = w.entry;
+                cube.correctValue = w.entry[i];
 
                 if (!scene.getObjectByName(cube.name)) {
                     scene.add(cube);
