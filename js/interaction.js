@@ -8,19 +8,22 @@ function onDocumentMouseDown( event ) {
   raycaster.setFromCamera( mouse, camera );
 
   var intersects = raycaster.intersectObjects(scene.children);
-  if ( INTERSECTED != intersects[ 0 ].object) {
+  console.log(intersects);
+
+  if ( intersects.length > 0 && INTERSECTED != intersects[ 0 ].object) {
     if ( INTERSECTED ) {
+
       INTERSECTED.material.color.setHex( 0xFFFFFF );
     }
     INTERSECTED = intersects[ 0 ].object;
     INTERSECTED.material.color.set( 0xFCD931 );
+
     //get directionIndex
     //find which word letter belongs to based on directionIndex
     //color all other blocks blue in that word
     //But also delete any other blue blocks in other directions
 
     //display clue
-    
   } else {
     if (!window.hasOwnProperty("directionIndex")) {
       directionIndex = 0
