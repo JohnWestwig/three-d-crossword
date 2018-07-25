@@ -14,6 +14,7 @@ function onDocumentMouseDown( event ) {
     if ( INTERSECTED ) {
 
       INTERSECTED.material.color.setHex( 0xFFFFFF );
+
     }
     INTERSECTED = intersects[ 0 ].object;
 
@@ -21,12 +22,13 @@ function onDocumentMouseDown( event ) {
     //find which word letter belongs to based on directionIndex
     //color all other blocks blue in that word
     //But also delete any other blue blocks in other directions
+      
 
     //display clue
 
   } else {
     directionIndex = (directionIndex + 1) % 3;
-    console.log("direction index: ", directionIndex)
+    // console.log("direction index: ", directionIndex)
   }
 
   if (!window.hasOwnProperty("directionIndex")) {
@@ -45,6 +47,13 @@ function onDocumentMouseDown( event ) {
       cube.material.color.set(0xFFFFFF);
     }
   });
+
+  var dir = ["x", "y", "z"][directionIndex];
+  var keys = Object.keys(INTERSECTED.clues);
+  if (!keys.includes(dir)) {
+      onDocumentMouseDown(event);
+  }
+  document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
 
   INTERSECTED.material.color.set( 0xFCD931 );
 }
