@@ -68,18 +68,18 @@ loadJSON(function(response) {
         for (j = 0; j < puzzle.puzzle_data.length; j++) {
             var w = puzzle.puzzle_data[j];
             var originalPosition = w.start[w.direction];
-            words_completed[w.entry] = false;
             for (i = 0; i < w.entry.length; i++) {
                 const wordGroup = new THREE.Group();
                 puzzleGroup.add(wordGroup);
 
                 //Should be set to ""
-                cube.currentValue = w.entry[i];
-
-                var textMesh = drawText(cube.currentValue);
+                var textMesh = drawText("");
 
                 const geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize);
                 const cube = new THREE.Mesh(geometry, textMesh);
+
+                cube.currentValue = w.entry[i];
+                
 
                 const geo = new THREE.EdgesGeometry(cube.geometry);
                 const mat = new THREE.LineBasicMaterial({

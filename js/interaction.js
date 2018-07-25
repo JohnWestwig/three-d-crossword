@@ -68,7 +68,6 @@ function onDocumentKeyDown( event ) {
           xc.fillText(keyCode === 8 ? "" : String.fromCharCode(keyCode), 64, 96);
 
           INTERSECTED.currentValue = String.fromCharCode(keyCode);
-          updateGameGrid(scene);
 
           var cmap = new THREE.Texture(x);
           INTERSECTED.material.map = cmap;
