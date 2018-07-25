@@ -357,7 +357,7 @@ THREE.TrackballControls = function ( object, x, y, z, domElement ) {
 
         _this.target.copy( _this.target0 );
         //_this.object.position.copy( _this.position0 );
-        _this.object.position.y = y;
+        _this.object.position.y = 0;
         _this.object.up.copy( _this.up0 );
 
         _eye.subVectors( _this.object.position, _this.target );
