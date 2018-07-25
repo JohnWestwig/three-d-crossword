@@ -48,6 +48,13 @@ function onDocumentMouseDown( event ) {
     }
   });
 
+  var dir = ["x", "y", "z"][directionIndex];
+  var keys = Object.keys(INTERSECTED.clues);
+  if (!keys.includes(dir)) {
+      onDocumentMouseDown(event);
+  }
+  document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
+
   INTERSECTED.material.color.set( 0xFCD931 );
 }
 

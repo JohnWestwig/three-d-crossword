@@ -98,7 +98,6 @@ loadJSON(function(response) {
                   scene.getObjectByName(cube.name).words[w.direction] = w.entry;
                   scene.getObjectByName(cube.name).clues[w.direction] = w.clue;
                 }
-                console.log(cube.clues, cube.words);
             }
         }
         return puzzleGroup;
