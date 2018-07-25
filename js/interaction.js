@@ -8,28 +8,43 @@ function onDocumentMouseDown( event ) {
   raycaster.setFromCamera( mouse, camera );
 
   var intersects = raycaster.intersectObjects(scene.children);
+
   if ( INTERSECTED != intersects[ 0 ].object) {
     if ( INTERSECTED ) {
       INTERSECTED.material.color.setHex( 0xFFFFFF );
 
     }
     INTERSECTED = intersects[ 0 ].object;
-    INTERSECTED.material.color.set( 0xFCD931 );
-
     //get directionIndex
     //find which word letter belongs to based on directionIndex
     //color all other blocks blue in that word
     //But also delete any other blue blocks in other directions
 
     //display clue
-    
+
   } else {
-    if (!window.hasOwnProperty("directionIndex")) {
-      directionIndex = 0
-    }
     directionIndex = (directionIndex + 1) % 3;
     // console.log("direction index: ", directionIndex)
   }
+
+  if (!window.hasOwnProperty("directionIndex")) {
+    directionIndex = INTERSECTED.words.x ? 0 : (INTERSECTED.words.y ? 1 : 2);
+  }
+
+  while (!INTERSECTED.words[["x", "y", "z"][directionIndex]]) {
+    directionIndex = (directionIndex + 1) % 3;
+  }
+
+  const activeWord = INTERSECTED.words[["x", "y", "z"][directionIndex]]
+  scene.children.forEach(cube => {
+    if (activeWord && cube.words[["x", "y", "z"][directionIndex]] === activeWord) {
+      cube.material.color.set(0x006600);
+    } else {
+      cube.material.color.set(0xFFFFFF);
+    }
+  });
+
+  INTERSECTED.material.color.set( 0xFCD931 );
 }
 
 function onDocumentKeyDown( event ) {
