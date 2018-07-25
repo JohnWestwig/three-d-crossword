@@ -350,6 +350,26 @@ THREE.TrackballControls = function ( object, x, y, z, domElement ) {
 
 	};
 
+    this.resetX = function () {
+
+        _state = STATE.NONE;
+        _prevState = STATE.NONE;
+
+        _this.target.copy( _this.target0 );
+        //_this.object.position.copy( _this.position0 );
+        _this.object.position.y = y;
+        _this.object.up.copy( _this.up0 );
+
+        _eye.subVectors( _this.object.position, _this.target );
+
+        _this.object.lookAt( _this.target );
+
+        _this.dispatchEvent( changeEvent );
+
+        lastPosition.copy( _this.object.position );
+
+    };
+
 	// listeners
 
 	function keydown( event ) {
@@ -624,7 +644,7 @@ THREE.TrackballControls = function ( object, x, y, z, domElement ) {
 	var context = this;
     document.addEventListener ("keydown", function (zEvent) {
         if (zEvent.altKey) {
-            context.reset();
+            context.resetX();
         }
     });
 
