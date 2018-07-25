@@ -11,9 +11,11 @@ function onDocumentMouseDown( event ) {
   if ( INTERSECTED != intersects[ 0 ].object) {
     if ( INTERSECTED ) {
       INTERSECTED.material.color.setHex( 0xFFFFFF );
+
     }
     INTERSECTED = intersects[ 0 ].object;
     INTERSECTED.material.color.set( 0xFCD931 );
+
     //get directionIndex
     //find which word letter belongs to based on directionIndex
     //color all other blocks blue in that word
@@ -26,7 +28,7 @@ function onDocumentMouseDown( event ) {
       directionIndex = 0
     }
     directionIndex = (directionIndex + 1) % 3;
-    console.log("direction index: ", directionIndex)
+    // console.log("direction index: ", directionIndex)
   }
 }
 
@@ -68,11 +70,12 @@ function onDocumentKeyDown( event ) {
           }
           if (dir === 'y') {
               newPosition[dir] -= 1;
+
           } else {
               newPosition[dir] += 1;
           }
 
-          console.log("Old Position: ", INTERSECTED);
+          //console.log("Old Position: ", INTERSECTED);
           var nextBlock = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
           if (nextBlock) {
               INTERSECTED.material.color.setHex(0xAEDAF5);
@@ -80,7 +83,7 @@ function onDocumentKeyDown( event ) {
               INTERSECTED.material.color.setHex(0xFCD931);
           }
 
-          console.log("New intersects: ", INTERSECTED);
+          //console.log("New intersects: ", INTERSECTED);
 
       }
   }

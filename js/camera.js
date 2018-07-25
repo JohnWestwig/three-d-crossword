@@ -26,7 +26,7 @@ function init() {
   controls = new THREE.TrackballControls(camera, xCenter, yCenter, zCenter);
 
   controls.rotateSpeed = 5.0;
-  controls.zoomSpeed = 8.0;
+  controls.zoomSpeed = 6.0;
   controls.panSpeed = 0.8;
 
   controls.noZoom = false;
