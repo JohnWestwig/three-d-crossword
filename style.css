@@ -30,7 +30,7 @@
 .hamburger div:not(:last-child) { margin-bottom: 5px; }
 
 nav {
-  background: rgba(255, 255, 255, 0.20);
+  background: rgba(0, 0, 0, 0.40);
   display: inline-block;
   position: fixed;
   height: 100vh;
