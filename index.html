@@ -3,6 +3,7 @@
 	<head>
 		<meta charset=utf-8>
 		<title>Three-D-Crossword</title>
+		<link rel="stylesheet" href="style.css">
 		<style>
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
@@ -11,11 +12,43 @@
 	<body>
 		<script src="js/three.js"></script>
 		<script id="puzzle" type="text/javascript" src="puzzle.json"></script>
-    	<script src="js/model.js"></script>
+    <script src="js/model.js"></script>
 		<script src="js/TrackballControls.js"></script>
 		<script src="js/camera.js"></script>
 		<script src="js/interaction.js"></script>
 
-		<p style="padding-left: 10px; position:absolute; color: white">Press Alt to Reset the Axes</p> 
+		<div class="hamburger" id="hamburger" onclick="toggleSidenav();">
+			<div></div>
+			<div></div>
+		</div>
+
+		<nav class="row">
+
+  		<div class="column">
+				<p style="text-align:center"><b>X</b></p>
+				<div class="clues">
+					<p>You have it covered aside from using the wrong property. The scrollbar can be triggered with any property overflow, overflow-x, or overflow-y and each can be set to any of visible, hidden, scroll, auto, or inherit. You are currently looking at these two:auto - This value will look at the width and height of the box. If they are defined, it won't let the box expand past those boundaries. Instead (if the content exceeds those boundaries), it will create a scrollbar for either boundary (or both) that exceeds its length.scroll - This values forces a scrollbar, no matter what, even if the content does not exceed the boundary set. If the content doesn't need to be scrolled, the bar will appear as "disabled" or non-interactive.If you always want the vertical scrollbar to appear:You should use overflow-y: scroll. This forces a scrollbar to appear for the vertical axis whether or not it is needed. If you can't actually scroll the context, it will appear as a"disabled" scrollbar.If you only want a scrollbar to appear if you can scroll the box:Just use overflow: auto. Since your content by default just breaks to the next line when it cannot fit on the current line, a horizontal scrollbar won't be created (unless it's on an element that has word-wrapping disabled). For the vertical bar,it will allow the content to expand up to the height you have specified. If it exceeds that height, it will show a vertical scrollbar to view the rest of the content, but will not show a scrollbar if it does not exceed the height.</p>
+				</div>
+  		</div>
+
+			<div class="column">
+				<p style="text-align:center"><b>Y</b></p>
+				<div class="clues">
+					<p>You have it covered aside from using the wrong property. The scrollbar can be triggered with any property overflow, overflow-x, or overflow-y and each can be set to any of visible, hidden, scroll, auto, or inherit. You are currently looking at these two:auto - This value will look at the width and height of the box. If they are defined, it won't let the box expand past those boundaries. Instead (if the content exceeds those boundaries), it will create a scrollbar for either boundary (or both) that exceeds its length.scroll - This values forces a scrollbar, no matter what, even if the content does not exceed the boundary set. If the content doesn't need to be scrolled, the bar will appear as "disabled" or non-interactive.If you always want the vertical scrollbar to appear:You should use overflow-y: scroll. This forces a scrollbar to appear for the vertical axis whether or not it is needed. If you can't actually scroll the context, it will appear as a"disabled" scrollbar.If you only want a scrollbar to appear if you can scroll the box:Just use overflow: auto. Since your content by default just breaks to the next line when it cannot fit on the current line, a horizontal scrollbar won't be created (unless it's on an element that has word-wrapping disabled). For the vertical bar,it will allow the content to expand up to the height you have specified. If it exceeds that height, it will show a vertical scrollbar to view the rest of the content, but will not show a scrollbar if it does not exceed the height.</p>
+				</div>
+			</div>
+
+			<div class="column">
+				<p style="text-align:center"><b>Z</b></p>
+			  <div class="clues">
+					<p>You have it covered aside from using the wrong property. The scrollbar can be triggered with any property overflow, overflow-x, or overflow-y and each can be set to any of visible, hidden, scroll, auto, or inherit. You are currently looking at these two:auto - This value will look at the width and height of the box. If they are defined, it won't let the box expand past those boundaries. Instead (if the content exceeds those boundaries), it will create a scrollbar for either boundary (or both) that exceeds its length.scroll - This values forces a scrollbar, no matter what, even if the content does not exceed the boundary set. If the content doesn't need to be scrolled, the bar will appear as "disabled" or non-interactive.If you always want the vertical scrollbar to appear:You should use overflow-y: scroll. This forces a scrollbar to appear for the vertical axis whether or not it is needed. If you can't actually scroll the context, it will appear as a"disabled" scrollbar.If you only want a scrollbar to appear if you can scroll the box:Just use overflow: auto. Since your content by default just breaks to the next line when it cannot fit on the current line, a horizontal scrollbar won't be created (unless it's on an element that has word-wrapping disabled). For the vertical bar,it will allow the content to expand up to the height you have specified. If it exceeds that height, it will show a vertical scrollbar to view the rest of the content, but will not show a scrollbar if it does not exceed the height.You have it covered aside from using the wrong property. The scrollbar can be triggered with any property overflow, overflow-x, or overflow-y and each can be set to any of visible, hidden, scroll, auto, or inherit. You are currently looking at these two:auto - This value will look at the width and height of the box. If they are defined, it won't let the box expand past those boundaries. Instead (if the content exceeds those boundaries), it will create a scrollbar for either boundary (or both) that exceeds its length.scroll - This values forces a scrollbar, no matter what, even if the content does not exceed the boundary set. If the content doesn't need to be scrolled, the bar will appear as "disabled" or non-interactive.If you always want the vertical scrollbar to appear:You should use overflow-y: scroll. This forces a scrollbar to appear for the vertical axis whether or not it is needed. If you can't actually scroll the context, it will appear as a"disabled" scrollbar.If you only want a scrollbar to appear if you can scroll the box:Just use overflow: auto. Since your content by default just breaks to the next line when it cannot fit on the current line, a horizontal scrollbar won't be created (unless it's on an element that has word-wrapping disabled). For the vertical bar,it will allow the content to expand up to the height you have specified. If it exceeds that height, it will show a vertical scrollbar to view the rest of the content, but will not show a scrollbar if it does not exceed the height.</p>
+				</div>
+			</div>
+		</nav>
+
+		<div class="main">
+				<p style="position: fixed; bottom: 0; width:100%; text-align: center; color: gray; font-family: arial">Press Alt to Reset the Axes</p>
+		</div>
+
 	</body>
 </html>

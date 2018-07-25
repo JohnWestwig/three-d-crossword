@@ -14,6 +14,13 @@ function onDocumentMouseDown( event ) {
     }
     INTERSECTED = intersects[ 0 ].object;
     INTERSECTED.material.color.set( 0xFCD931 );
+    //get directionIndex
+    //find which word letter belongs to based on directionIndex
+    //color all other blocks blue in that word
+    //But also delete any other blue blocks in other directions
+
+    //display clue
+    
   } else {
     if (!window.hasOwnProperty("directionIndex")) {
       directionIndex = 0
@@ -48,7 +55,6 @@ function onDocumentKeyDown( event ) {
           INTERSECTED.material.map = cmap;
           INTERSECTED.material.map.needsUpdate = true;
 
-          // click -> set global state variable to 0, click again and increment variable..pass variable into object name argument
           var clicked = INTERSECTED;
           var newPosition = INTERSECTED.position.clone();
           if (!window.hasOwnProperty("directionIndex")) {
@@ -69,7 +75,7 @@ function onDocumentKeyDown( event ) {
           console.log("Old Position: ", INTERSECTED);
           var nextBlock = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
           if (nextBlock) {
-              INTERSECTED.material.color.setHex(0xFFFFFF);
+              INTERSECTED.material.color.setHex(0xAEDAF5);
               INTERSECTED = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
               INTERSECTED.material.color.setHex(0xFCD931);
           }
@@ -78,4 +84,10 @@ function onDocumentKeyDown( event ) {
 
       }
   }
+}
+
+function toggleSidenav() {
+
+  document.body.classList.toggle('sidenav-active');
+
 }
