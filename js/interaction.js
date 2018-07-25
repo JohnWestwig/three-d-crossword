@@ -79,6 +79,13 @@ function onDocumentKeyDown( event ) {
           xc.textAlign = "center";
           xc.fillText(keyCode === 8 ? "" : String.fromCharCode(keyCode), 64, 96);
 
+          INTERSECTED.currentValue = String.fromCharCode(keyCode);
+
+          if (gameOver(scene)) {
+            console.log("GameOver! Music Goes Here!");
+            document.removeEventListener("keydown", onDocumentKeyDown);
+          }
+
           var cmap = new THREE.Texture(x);
           INTERSECTED.material.map = cmap;
           INTERSECTED.material.map.needsUpdate = true;
@@ -110,6 +117,10 @@ function onDocumentKeyDown( event ) {
           //console.log("New intersects: ", INTERSECTED);
       }
   }
+}
+
+function gameOver(scene) {
+  return scene.children.reduce((acc, w) => acc && w.currentValue === w.correctValue);
 }
 
 function toggleSidenav() {
