@@ -68,6 +68,7 @@ var loadPuzzle = () => {
         for (j = 0; j < puzzle.puzzle_data.length; j++) {
             var w = puzzle.puzzle_data[j];
 
+            // add clues to side panel
             var x = document.getElementById("clues_x");
             var y = document.getElementById("clues_y");
             var z = document.getElementById("clues_z");
