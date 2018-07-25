@@ -1,12 +1,13 @@
 var context = this;
 var dimension;
+var puzzleName = "puzzle.json";
 
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
   //xobj.overrideMimeType("application/json");
   xobj.open(
     "GET",
-    "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/puzzle.json",
+    "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+puzzleName,
     true
   ); // Replace 'my_data' with the path to your file
   xobj.onreadystatechange = function() {
@@ -19,7 +20,8 @@ function loadJSON(callback) {
 }
 
 //var puzzle;
-loadJSON(function(response) {
+var loadPuzzle = () => {
+  loadJSON(function(response) {
     // Parse JSON string into object
     var actual_JSON = JSON.parse(response);
     var puzzle = actual_JSON;
@@ -109,4 +111,6 @@ loadJSON(function(response) {
     }
 
     const puzzleGroup = drawCrossword(scene);
-});
+  })
+};
+loadPuzzle();

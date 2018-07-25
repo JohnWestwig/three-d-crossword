@@ -65,6 +65,11 @@ function onDocumentKeyDown( event ) {
   const keyCode = event.which;
   //console.log("This was the key that was pressed: "+keyCode);
   //TODO: On Key Pressed Logic
+  if (keyCode == 220) {
+    console.log("oh my");
+    resetScene("puzzle.json");
+    return;
+  }
   if ( INTERSECTED ) {
       if ((keyCode >= 65 && keyCode <= 120) || (keyCode == 32 && keyCode == 0) || keyCode === 8) {
           var x = document.createElement("canvas");
@@ -117,6 +122,18 @@ function onDocumentKeyDown( event ) {
           }
       }
   }
+}
+
+function resetScene(nextPuzzle) {
+  puzzleName = nextPuzzle;
+  cancelAnimationFrame(this.id);// Stop the animation
+  document.body.removeChild(renderer.domElement);
+  scene = null;
+  projector = null;
+  camera = null;
+  controls = null;
+  loadPuzzle();
+
 }
 
 function gameOver(scene) {
