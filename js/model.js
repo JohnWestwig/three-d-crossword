@@ -34,8 +34,6 @@ loadJSON(function(response) {
 
     document.body.appendChild( renderer.domElement );
 
-    console.log('loadJSON');
-
     const boxSize = 1;
 
     function drawText(letter) {
@@ -94,6 +92,8 @@ loadJSON(function(response) {
                 cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
                 cube.words = {};
                 cube.words[w.direction] = w.entry;
+                cube.clues = {};
+                cube.clues[w.direction] = w.clue;
 
                 if (!scene.getObjectByName(cube.name)) {
                     scene.add(cube);
