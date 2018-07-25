@@ -82,7 +82,9 @@ function onDocumentKeyDown( event ) {
           INTERSECTED.currentValue = String.fromCharCode(keyCode);
 
           if (gameOver(scene)) {
-            console.log("GameOver! Music Goes Here!");
+            console.log("Game Over!");
+            var audio = new Audio('end_music.mp3');
+            audio.play();
             document.removeEventListener("keydown", onDocumentKeyDown);
           }
 
@@ -107,14 +109,12 @@ function onDocumentKeyDown( event ) {
               newPosition[dir] += keyCode === 8 ? -1 : 1 ;
           }
 
-          //console.log("Old Position: ", INTERSECTED);
           var nextBlock = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
           if (nextBlock) {
               INTERSECTED.material.color.setHex(0xAEDAF5);
               INTERSECTED = scene.getObjectByName(newPosition.x + "-" + newPosition.y + "-" + newPosition.z);
               INTERSECTED.material.color.setHex(0xFCD931);
           }
-          //console.log("New intersects: ", INTERSECTED);
       }
   }
 }
