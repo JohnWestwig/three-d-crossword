@@ -9,6 +9,18 @@
   height:200px;
 }
 
+.column .clues_x {
+
+}
+
+.column .clues_y {
+
+}
+
+.column .clues_z {
+  
+}
+
 .hamburger {
   position: fixed;
   z-index: 9999;
