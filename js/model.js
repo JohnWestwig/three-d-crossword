@@ -78,7 +78,7 @@ loadJSON(function(response) {
                 const geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize);
                 const cube = new THREE.Mesh(geometry, textMesh);
 
-                cube.currentValue = w.entry[i];
+                cube.currentValue = "";
                 
 
                 const geo = new THREE.EdgesGeometry(cube.geometry);
