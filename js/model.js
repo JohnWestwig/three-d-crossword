@@ -36,6 +36,8 @@ var loadPuzzle = () => {
 
     document.body.appendChild( renderer.domElement );
 
+    console.log('loadJSON');
+
     const boxSize = 1;
 
     function drawText(letter) {
@@ -60,23 +62,38 @@ var loadPuzzle = () => {
     }
 
     function drawCrossword(scene) {
+
+
         const puzzleGroup = new THREE.Group();
+
         var j;
         for (j = 0; j < puzzle.puzzle_data.length; j++) {
             var w = puzzle.puzzle_data[j];
+
+            var x = document.getElementById("clues_x");
+            var y = document.getElementById("clues_y");
+            var z = document.getElementById("clues_z");
+
+            var divtest = document.createElement("div");
+            divtest.innerHTML = w.clue;
+
+            if (w.direction == "x") {
+              x.appendChild(divtest);
+            } else if (w.direction == "y") {
+              y.appendChild(divtest);
+            } else {
+              z.appendChild(divtest);
+            }
+
             var originalPosition = w.start[w.direction];
             for (i = 0; i < w.entry.length; i++) {
                 const wordGroup = new THREE.Group();
                 puzzleGroup.add(wordGroup);
 
-                //Should be set to ""
-                var textMesh = drawText("");
+                var textMesh = drawText(w.entry[i]);
 
                 const geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize);
                 const cube = new THREE.Mesh(geometry, textMesh);
-
-                cube.currentValue = "";
-                
 
                 const geo = new THREE.EdgesGeometry(cube.geometry);
                 const mat = new THREE.LineBasicMaterial({
@@ -95,15 +112,11 @@ var loadPuzzle = () => {
                 cube.name = `${cubePosition.x}-${-cubePosition.y}-${cubePosition.z}`;
                 cube.words = {};
                 cube.words[w.direction] = w.entry;
-                cube.clues = {};
-                cube.clues[w.direction] = w.clue;
-                cube.correctValue = w.entry[i];
 
                 if (!scene.getObjectByName(cube.name)) {
                     scene.add(cube);
                 } else {
                   scene.getObjectByName(cube.name).words[w.direction] = w.entry;
-                  scene.getObjectByName(cube.name).clues[w.direction] = w.clue;
                 }
             }
         }

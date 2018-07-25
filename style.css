@@ -9,17 +9,7 @@
   height:200px;
 }
 
-.column .clues_x {
 
-}
-
-.column .clues_y {
-
-}
-
-.column .clues_z {
-  
-}
 
 .hamburger {
   position: fixed;
@@ -40,8 +30,7 @@
 .hamburger div:not(:last-child) { margin-bottom: 5px; }
 
 nav {
-  background-color: white;
-  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.20);
   display: inline-block;
   position: fixed;
   height: 100vh;
@@ -85,3 +74,18 @@ nav, .hamburger, .cover {
 }
 
 .sidenav-active .main { margin-right: 300px; }
+
+#clues_x {
+  color: white;
+  opacity: 1;
+}
+
+#clues_y {
+  color: white;
+  opacity: 1;
+}
+
+#clues_z {
+  color:white;
+  opacity: 1;
+}
