@@ -51,6 +51,9 @@ function onDocumentKeyDown( event ) {
           xc.textAlign = "center";
           xc.fillText(String.fromCharCode(keyCode), 64, 96);
 
+          INTERSECTED.currentValue = String.fromCharCode(keyCode);
+          updateGameGrid(scene);
+
           var cmap = new THREE.Texture(x);
           INTERSECTED.material.map = cmap;
           INTERSECTED.material.map.needsUpdate = true;
