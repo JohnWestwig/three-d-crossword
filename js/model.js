@@ -19,6 +19,7 @@ function loadJSON(callback) {
   xobj.send(null);
 }
 
+
 //var puzzle;
 var loadPuzzle = () => {
   loadJSON(function(response) {
@@ -65,22 +66,43 @@ var loadPuzzle = () => {
         const puzzleGroup = new THREE.Group();
 
         var j;
+        //var clue_number = 0;
         for (j = 0; j < puzzle.puzzle_data.length; j++) {
             var w = puzzle.puzzle_data[j];
 
+            // add clues to side panel
             var x = document.getElementById("clues_x");
             var y = document.getElementById("clues_y");
             var z = document.getElementById("clues_z");
 
-            var divtest = document.createElement("div");
+            // make clue bold
+            //clue_number++;
+            // var clue = document.createElement("a");
+            // clue.innerHTML = clue_number.toString().bold();
+            var clue = document.createElement("a");
+            clue.innerHTML = w.Id;
+            clue.style.padding = "0px 30px 0px 0px"; // T R B L
+
+            // add clue to Id
+            var divtest = document.createElement("span");
             divtest.innerHTML = w.clue;
 
+            clue.appendChild(divtest);
+            clue.style.padding = "10px 0px 0px 10px";
+            clue.style.color = "white";
+            clue.style.textAlign = "left";
+
+            // insert break after each clue
+            var br = document.createElement("br");
+            clue.appendChild(br);
+
+            // add clue to xyz window
             if (w.direction == "x") {
-              x.appendChild(divtest);
+              x.append(clue);
             } else if (w.direction == "y") {
-              y.appendChild(divtest);
+              y.appendChild(clue);
             } else {
-              z.appendChild(divtest);
+              z.appendChild(clue);
             }
 
             var originalPosition = w.start[w.direction];
