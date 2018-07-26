@@ -92,14 +92,14 @@ var loadPuzzle = () => {
             // get clue Id
             var clue = document.createElement("a");
             clue.innerHTML = w.Id.toString().bold();
-            clue.style.padding = "0px 30px 0px 0px"; // T R B L
+            clue.style.background = "rgba(0,0,0,0)";
+
 
             // add clue to Id
             var divtest = document.createElement("div");
             divtest.innerHTML = w.clue;
             divtest.style.display = "inline";
-            divtest.style.padding = "0px 0px 0px 15px"; 
-
+            divtest.style.padding = "0px 0px 0px 15px"; // T R B L
             clue.appendChild(divtest);
             clue.style.padding = "0px 0px 0px 10px";
             clue.style.color = "white";
