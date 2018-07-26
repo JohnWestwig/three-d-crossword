@@ -134,7 +134,38 @@ nav, .hamburger, .cover {
 a:hover {
   font-weight: bold;
 }
-
-#timer {
   
+.modal {
+  margin:0;
+  position:absolute;
+  top:50%;
+  left: 50%;
+  margin-right: -50%;
+  transform:translate(-50%, -50%);
+  background-color: white;
+  border-radius: 20px;
+  width: 300px;
+  height: 160px;
+
+  box-shadow: 3px 3px 3px 1px grey;
+}
+
+button {
+  margin:0;
+  position:absolute;
+  top:65%;
+  left: 50%;
+  margin-right: -50%;
+  transform:translate(-50%, -50%);
+  background-color: rgb(90, 132, 195);
+  border-radius: 30px;
+  color: white;
+  padding: 8px 70px;
+  text-align: center;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  box-shadow: 3px 3px rgb(29,92,193);
 }
