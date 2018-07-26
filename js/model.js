@@ -101,8 +101,7 @@ var loadPuzzle = () => {
             clue.style.padding = "0px 0px 0px 10px";
             clue.style.color = "white";
             clue.style.textAlign = "left";
-
-            clue.setAttribute("id", "clue_id");
+            clue.setAttribute('onclick', "(event) => doSomething()");
 
             // insert break after each clue
             var br = document.createElement("br");
