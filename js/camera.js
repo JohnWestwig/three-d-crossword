@@ -17,7 +17,7 @@ function init() {
     1000
   );
   //camera.position.z = 500;
-  timer = startTimer(60, document.getElementById("timer"));
+  timer = startTimer(document.getElementById("timer"));
 
   //find puzzle center
   var xCenter = dimension.x / 2.0;
@@ -52,21 +52,18 @@ function init() {
 //To start: timer = startTimer(duration_in_seconds, html_element);
 //To stop: clearInterval(timer);
 //If minutes and seconds ~= 0, need to activate similar gameOver logic (remove onKeydown event listener)
-function startTimer(duration, display) {
- var start = Date.now(), diff;
- function timer() {
-  diff = duration - (((Date.now() - start) / 1000) | 0);
-  minutes = (diff / 60) | 0;
-  seconds = (diff % 60) | 0;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
+function startTimer(display) {
+  var time = -1;
+  function timer() {
+    time += 1
+    minutes = (time / 60) | 0;
+    seconds = (time % 60) | 0;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-  display.innerHTML = minutes+":"+seconds;
-  display.style.color = "white"; 
+    display.innerHTML = minutes+":"+seconds;
+    display.style.color = "white"; 
 
-  if (diff <= 0) {
-    start = Date.now() + 1000;
-  }
  }
  timer();
  return setInterval(timer, 1000);
