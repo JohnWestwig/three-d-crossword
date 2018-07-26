@@ -86,20 +86,19 @@ var loadPuzzle = () => {
             var y = document.getElementById("clues_y");
             var z = document.getElementById("clues_z");
 
-            // make clue bold
-            //clue_number++;
-            // var clue = document.createElement("a");
-            // clue.innerHTML = clue_number.toString().bold();
+            // get clue Id
             var clue = document.createElement("a");
-            clue.innerHTML = w.Id;
+            clue.innerHTML = w.Id.toString().bold();
             clue.style.padding = "0px 30px 0px 0px"; // T R B L
 
             // add clue to Id
-            var divtest = document.createElement("span");
+            var divtest = document.createElement("div");
             divtest.innerHTML = w.clue;
+            divtest.style.display = "inline";
+            divtest.style.padding = "0px 0px 0px 15px"; 
 
             clue.appendChild(divtest);
-            clue.style.padding = "10px 0px 0px 10px";
+            clue.style.padding = "0px 0px 0px 10px";
             clue.style.color = "white";
             clue.style.textAlign = "left";
 
@@ -107,13 +106,18 @@ var loadPuzzle = () => {
             var br = document.createElement("br");
             clue.appendChild(br);
 
+            var br2 = document.createElement("br");
+
             // add clue to xyz window
             if (w.direction == "x") {
-              x.append(clue);
+              x.appendChild(clue);
+              x.appendChild(br2);
             } else if (w.direction == "y") {
               y.appendChild(clue);
+              y.appendChild(br2);
             } else {
               z.appendChild(clue);
+              z.appendChild(br2);
             }
 
             var originalPosition = w.start[w.direction];
