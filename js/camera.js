@@ -4,13 +4,12 @@ var clickedOnCube = false;
 var mouse = new THREE.Vector2(),
   INTERSECTED,
   ACTIVE_SQUARE;
-
+var timer, minutes, seconds;
 function init() {
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   scene = new THREE.Scene();
   raycaster = new THREE.Raycaster();
-
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -47,6 +46,26 @@ function init() {
   window.addEventListener("resize", onWindowResize, false);
   document.addEventListener("mousedown", onDocumentMouseDown, false);
   document.addEventListener("keydown", onDocumentKeyDown, false);
+}
+
+//To start: timer = startTimer(duration_in_seconds, html_element);
+//To stop: clearInterval(timer);
+//If minutes and seconds ~= 0, need to activate similar gameOver logic (remove onKeydown event listener)
+function startTimer(display) {
+  var time = -1;
+  function timer() {
+    time += 1
+    minutes = (time / 60) | 0;
+    seconds = (time % 60) | 0;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.innerHTML = minutes+":"+seconds;
+    display.style.color = "white"; 
+
+ }
+ timer();
+ return setInterval(timer, 1000);
 }
 
 function onWindowResize() {
