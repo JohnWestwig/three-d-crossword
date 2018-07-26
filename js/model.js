@@ -81,8 +81,10 @@ var loadPuzzle = () => {
             clue.style.padding = "0px 30px 0px 0px"; // T R B L
 
             // add clue to Id
-            var divtest = document.createElement("span");
+            var divtest = document.createElement("div");
             divtest.innerHTML = w.clue;
+            divtest.style.display = "inline";
+            divtest.style.padding = "0px 0px 0px 15px"; 
 
             clue.appendChild(divtest);
             clue.style.padding = "0px 0px 0px 10px";
