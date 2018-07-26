@@ -40,7 +40,7 @@
 			"entry": "KRONOS"
 		},
 		{
-			"clue": "Nice location within France",
+			"clue": "Nice location?",
 			"start": {
 				"x": 1,
 				"y": 1,
@@ -50,7 +50,7 @@
 			"entry": "SUD"
 		},
 		{
-			"clue": "JF, sporadically",
+			"clue": "JCF, sporadically",
 			"start": {
 				"x": 1,
 				"y": 1,
