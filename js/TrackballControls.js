@@ -172,7 +172,6 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
               moveDirection.copy(objectUpDirection.add(objectSidewaysDirection));
               axis.crossVectors(moveDirection, _eye).normalize();
               axis.x = 0;
-              axis.y = 1;
               axis.z = 0;
               angle *= _this.rotateSpeed;
               quaternion.setFromAxisAngle(axis, angle);
