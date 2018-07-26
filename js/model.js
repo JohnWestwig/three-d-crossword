@@ -66,7 +66,7 @@ var loadPuzzle = () => {
         const puzzleGroup = new THREE.Group();
 
         var j;
-        var clue_number = 0;
+        //var clue_number = 0;
         for (j = 0; j < puzzle.puzzle_data.length; j++) {
             var w = puzzle.puzzle_data[j];
 
@@ -76,12 +76,15 @@ var loadPuzzle = () => {
             var z = document.getElementById("clues_z");
 
             // make clue bold
-            clue_number++;
-            var clue = document.createElement("a");
-            clue.innerHTML = clue_number.toString().bold();
+            //clue_number++;
+            // var clue = document.createElement("a");
+            // clue.innerHTML = clue_number.toString().bold();
+            var clue = document.createElement("div");
+            clue.innerHTML = w.number;
             clue.style.padding = "0px 30px 0px 0px";
 
-            var divtest = document.createElement("body");
+            //var divtest = document.createElement("body");
+            var divtest = document.createElement("div");
             divtest.innerHTML = w.clue;
 
             clue.appendChild(divtest);
