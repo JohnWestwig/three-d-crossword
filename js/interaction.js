@@ -18,9 +18,8 @@ function onDocumentMouseDown( event ) {
     }
     INTERSECTED = intersects[ 0 ].object;
 
-  } else {
+  } else if ( intersects.length > 0 && INTERSECTED === intersects[0].object ) {
     directionIndex = (directionIndex + 1) % 3;
-
   }
 
   if (!window.hasOwnProperty("directionIndex")) {
