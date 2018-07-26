@@ -1,13 +1,14 @@
 var context = this;
 var dimension;
-var puzzleName = "puzzle.json";
+const defaultPuzzle = "puzzle.json";
 
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
   //xobj.overrideMimeType("application/json");
+  var nextPuzzle = window.name;
   xobj.open(
     "GET",
-    "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+puzzleName,
+    "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+nextPuzzle,
     true
   ); // Replace 'my_data' with the path to your file
   xobj.onreadystatechange = function() {
@@ -16,6 +17,16 @@ function loadJSON(callback) {
       callback(xobj.responseText);
     }
   };
+  xobj.onloadend = () => {
+    if (xobj.status == 404 && nextPuzzle !== defaultPuzzle) {
+      xobj.open(
+        "GET",
+        "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+defaultPuzzle,
+        true
+      );
+      xobj.send(null);
+    }
+  }
   xobj.send(null);
 }
 

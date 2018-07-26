@@ -115,15 +115,8 @@ function onDocumentKeyDown( event ) {
 }
 
 function resetScene(nextPuzzle) {
-  puzzleName = nextPuzzle;
-  cancelAnimationFrame(this.id);// Stop the animation
-  document.body.removeChild(renderer.domElement);
-  scene = null;
-  projector = null;
-  camera = null;
-  controls = null;
-  loadPuzzle();
-
+  window.name = nextPuzzle;
+  location.reload();
 }
 
 function gameOver(scene) {
