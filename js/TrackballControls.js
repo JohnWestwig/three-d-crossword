@@ -5,6 +5,8 @@
  * @author Luca Antiga 	/ http://lantiga.github.io
  */
 
+var alt = false;
+
 THREE.TrackballControls = function(object, x, y, z, domElement) {
   var _this = this;
   var STATE = {
@@ -138,11 +140,21 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
       angle;
 
     return function rotateCamera() {
-      moveDirection.set(
-        _moveCurr.x - _movePrev.x,
-        _moveCurr.y - _movePrev.y,
-        0
-      );
+      if (alt) {
+          controls.staticMoving = true;
+          controls.dynamicDampingFactor = 0.0;
+          moveDirection.set(
+              _moveCurr.x - _movePrev.x,
+              0,
+              0
+          );
+      } else {
+          moveDirection.set(
+              _moveCurr.x - _movePrev.x,
+              _moveCurr.y - _movePrev.y,
+              0
+          );
+      }
       angle = moveDirection.length();
 
       if (angle) {
@@ -154,22 +166,43 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
           .crossVectors(objectUpDirection, eyeDirection)
           .normalize();
 
-        objectUpDirection.setLength(_moveCurr.y - _movePrev.y);
-        objectSidewaysDirection.setLength(_moveCurr.x - _movePrev.x);
+          if (alt) {
+              objectUpDirection.setLength(_moveCurr.y - _movePrev.y);
+              objectSidewaysDirection.setLength(_moveCurr.x - _movePrev.x);
+              moveDirection.copy(objectUpDirection.add(objectSidewaysDirection));
+              axis.crossVectors(moveDirection, _eye).normalize();
+              axis.x = 0;
+              axis.y = 1;
+              axis.z = 0;
+              angle *= _this.rotateSpeed;
+              quaternion.setFromAxisAngle(axis, angle);
+              _eye.applyQuaternion(quaternion);
+              _this.object.up.applyQuaternion(quaternion);
 
-        moveDirection.copy(objectUpDirection.add(objectSidewaysDirection));
+              _lastAxis.copy(axis);
+              _lastAngle = angle;
+          } else {
+              objectUpDirection.copy(_this.object.up).normalize();
+              objectSidewaysDirection
+                  .crossVectors(objectUpDirection, eyeDirection)
+                  .normalize();
+              objectUpDirection.setLength(_moveCurr.y - _movePrev.y);
+              objectSidewaysDirection.setLength(_moveCurr.x - _movePrev.x);
+              moveDirection.copy(objectUpDirection.add(objectSidewaysDirection));
 
-        axis.crossVectors(moveDirection, _eye).normalize();
+              axis.crossVectors(moveDirection, _eye).normalize();
 
-        angle *= _this.rotateSpeed;
-        quaternion.setFromAxisAngle(axis, angle);
+              angle *= _this.rotateSpeed;
+              quaternion.setFromAxisAngle(axis, angle);
 
-        _eye.applyQuaternion(quaternion);
-        _this.object.up.applyQuaternion(quaternion);
+              _eye.applyQuaternion(quaternion);
+              _this.object.up.applyQuaternion(quaternion);
 
-        _lastAxis.copy(axis);
-        _lastAngle = angle;
+              _lastAxis.copy(axis);
+              _lastAngle = angle;
+          }
       } else if (!_this.staticMoving && _lastAngle) {
+        console.log("FSHIHFOSIHAJ K");
         _lastAngle *= Math.sqrt(1.0 - _this.dynamicDampingFactor);
         _eye.copy(_this.object.position).sub(_this.target);
         quaternion.setFromAxisAngle(_lastAxis, _lastAngle);
@@ -420,6 +453,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   }
 
   function keyup(event) {
+    alt = false;
     if (_this.enabled === false) return;
 
     _state = _prevState;
@@ -637,6 +671,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   document.addEventListener("keydown", function(zEvent) {
     if (zEvent.altKey) {
       context.resetX();
+      alt = true;
     }
   });
 };
