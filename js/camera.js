@@ -1,4 +1,4 @@
-var camera, controls, scene, renderer, raycaster;
+var camera, controls, scene, renderer, raycaster, timer, minutes, seconds;
 var mouse = new THREE.Vector2(), INTERSECTED, ACTIVE_SQUARE;
 
 function init() {
@@ -6,7 +6,6 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   scene = new THREE.Scene();
   raycaster = new THREE.Raycaster();
-
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -14,6 +13,7 @@ function init() {
     1000
   );
   //camera.position.z = 500;
+  timer = startTimer(60, document.getElementById("timer"));
 
     //find puzzle center
     var xCenter = dimension.x / 2.0;
@@ -44,6 +44,34 @@ function init() {
   document.addEventListener( 'mousedown', onDocumentMouseDown, false );
   document.addEventListener("keydown", onDocumentKeyDown, false);
 
+}
+
+//To start: timer = startTimer(duration_in_seconds, html_element);
+//To stop: clearInterval(timer);
+//If minutes and seconds ~= 0, need to activate similar gameOver logic (remove onKeydown event listener)
+function startTimer(duration, display) {
+ var start = Date.now(), diff;
+ function timer() {
+  diff = duration - (((Date.now() - start) / 1000) | 0);
+  minutes = (diff / 60) | 0;
+  seconds = (diff % 60) | 0;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+//display is html id 
+  display.innerHTML = minutes+":"+seconds;
+
+  display.style.color = "white"; 
+
+
+  console.log(minutes+":"+seconds);
+
+  if (diff <= 0) {
+    start = Date.now() + 1000;
+  }
+ }
+ timer();
+ return setInterval(timer, 1000);
 }
 
 function onWindowResize() {
