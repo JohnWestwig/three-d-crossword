@@ -91,7 +91,6 @@ var loadPuzzle = () => {
             clue.innerHTML = w.Id.toString().bold() + " ";
             clue.style.background = "rgba(0,0,0,0)";
 
-
             // add clue to Id
             var divtest = document.createElement("div");
             divtest.innerHTML = w.clue;
