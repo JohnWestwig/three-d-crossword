@@ -45,7 +45,6 @@ function init() {
 
   window.addEventListener("resize", onWindowResize, false);
   document.addEventListener("mousedown", onDocumentMouseDown, false);
-  document.addEventListener("keydown", onDocumentKeyDown, false);
 }
 
 //To start: timer = startTimer(duration_in_seconds, html_element);

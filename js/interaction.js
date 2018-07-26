@@ -131,6 +131,7 @@ function onDocumentKeyDown(event) {
 
 function onOkClick() {
   document.getElementById("start").style.display = "none";
+  document.addEventListener("keydown", onDocumentKeyDown, false);
   timer = startTimer(document.getElementById("timer"));
 }
 
