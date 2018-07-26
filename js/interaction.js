@@ -88,7 +88,8 @@ function onDocumentKeyDown(event) {
             INTERSECTED.currentValue = String.fromCharCode(keyCode);
 
             if (gameOver(scene)) {
-                console.log("Game Over!");
+                document.removeEventListener("keydown", onDocumentKeyDown);
+                clearInterval(timer);
                 var audio = new Audio("end_music.mp3");
                 audio.play();
             }
