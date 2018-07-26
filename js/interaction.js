@@ -129,7 +129,8 @@ function onDocumentKeyDown(event) {
 }
 
 function onOkClick() {
-  
+  document.getElementById("start").style.display = "none";
+  timer = startTimer(document.getElementById("timer"));
 }
 
 function resetScene(nextPuzzle) {

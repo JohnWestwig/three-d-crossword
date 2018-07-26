@@ -17,7 +17,6 @@ function init() {
     1000
   );
   //camera.position.z = 500;
-  timer = startTimer(document.getElementById("timer"));
 
   //find puzzle center
   var xCenter = dimension.x / 2.0;
