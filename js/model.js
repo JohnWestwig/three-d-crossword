@@ -5,6 +5,9 @@ const defaultPuzzle = "puzzle.json";
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
   //xobj.overrideMimeType("application/json");
+  if (!window.name) {
+    window.name = defaultPuzzle;
+  }
   var nextPuzzle = window.name;
   xobj.open(
     "GET",
