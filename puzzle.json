@@ -10,7 +10,7 @@
 		"author": "Jack Frysinger"
 	},
 	"puzzle_data": [{
-			"number": "1",
+			"Id": 1,
 			"clue": "Food for a whiney horse",
 			"start": {
 				"x": 0,
@@ -21,7 +21,7 @@
 			"entry": "HAY"
 		},
 		{
-			"number": "2",
+			"Id": 2,
 			"clue": "Pseudonym prefix",
 			"start": {
 				"x": 1,
@@ -32,7 +32,7 @@
 			"entry": "AKA"
 		},
 		{
-			"number": "3",
+			"Id": 3,
 			"clue": "Place for the Times' times",
 			"start": {
 				"x": 1,
@@ -43,7 +43,7 @@
 			"entry": "KRONOS"
 		},
 		{
-			"number": "4",
+			"Id": 4,
 			"clue": "Nice location?",
 			"start": {
 				"x": 1,
@@ -54,7 +54,7 @@
 			"entry": "SUD"
 		},
 		{
-			"number": "5", 
+			"Id": 5,
 			"clue": "JCF, sporadically",
 			"start": {
 				"x": 1,

@@ -79,12 +79,12 @@ var loadPuzzle = () => {
             //clue_number++;
             // var clue = document.createElement("a");
             // clue.innerHTML = clue_number.toString().bold();
-            var clue = document.createElement("div");
-            clue.innerHTML = w.number;
-            clue.style.padding = "0px 30px 0px 0px";
+            var clue = document.createElement("a");
+            clue.innerHTML = w.Id;
+            clue.style.padding = "0px 30px 0px 0px"; // T R B L
 
-            //var divtest = document.createElement("body");
-            var divtest = document.createElement("div");
+            // add clue to Id
+            var divtest = document.createElement("span");
             divtest.innerHTML = w.clue;
 
             clue.appendChild(divtest);
@@ -92,9 +92,13 @@ var loadPuzzle = () => {
             clue.style.color = "white";
             clue.style.textAlign = "left";
 
+            // insert break after each clue
+            var br = document.createElement("br");
+            clue.appendChild(br);
 
+            // add clue to xyz window
             if (w.direction == "x") {
-              x.appendChild(clue);
+              x.append(clue);
             } else if (w.direction == "y") {
               y.appendChild(clue);
             } else {
