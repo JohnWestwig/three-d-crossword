@@ -145,25 +145,25 @@ a:hover {
   background-color: white;
   border-radius: 20px;
   width: 300px;
-  height: 200px;
+  height: 160px;
 
-  box-shadow: 3px 3px 5px grey;
+  box-shadow: 3px 3px 3px 1px grey;
 }
 
-.button {
+button {
   margin:0;
   position:absolute;
-  top:75%;
+  top:65%;
   left: 50%;
   margin-right: -50%;
   transform:translate(-50%, -50%);
   background-color: rgb(90, 132, 195);
   border-radius: 30px;
   color: white;
-  padding: 10px 70px;
+  padding: 8px 70px;
   text-align: center;
   display: inline-block;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
