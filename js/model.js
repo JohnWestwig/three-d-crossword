@@ -51,7 +51,6 @@ var loadPuzzle = () => {
 
     document.body.appendChild( renderer.domElement );
 
-    console.log('loadJSON');
 
     const boxSize = 1;
 

@@ -20,7 +20,7 @@ function onDocumentMouseDown( event ) {
 
   } else {
     directionIndex = (directionIndex + 1) % 3;
-    // console.log("direction index: ", directionIndex)
+
   }
 
   if (!window.hasOwnProperty("directionIndex")) {
@@ -46,7 +46,6 @@ function onDocumentMouseDown( event ) {
       onDocumentMouseDown(event);
   }
   document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
-  console.log("HI");
   INTERSECTED.material.color.set( 0xFCD931 );
 }
 
@@ -55,10 +54,8 @@ function onDocumentKeyDown( event ) {
         context.reset();
     }
   const keyCode = event.which;
-  //console.log("This was the key that was pressed: "+keyCode);
-  //TODO: On Key Pressed Logic
+
   if (keyCode == 220) {
-    console.log("oh my");
     resetScene("puzzle.json");
     return;
   }
@@ -77,10 +74,9 @@ function onDocumentKeyDown( event ) {
           INTERSECTED.currentValue = String.fromCharCode(keyCode);
 
           if (gameOver(scene)) {
-            console.log("Game Over!");
+            document.removeEventListener("keydown", onDocumentKeyDown);
             var audio = new Audio('end_music.mp3');
             audio.play();
-            document.removeEventListener("keydown", onDocumentKeyDown);
           }
 
           var cmap = new THREE.Texture(x);
