@@ -141,8 +141,6 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
 
     return function rotateCamera() {
       if (alt) {
-          controls.staticMoving = true;
-          controls.dynamicDampingFactor = 0.0;
           moveDirection.set(
               _moveCurr.x - _movePrev.x,
               0,
