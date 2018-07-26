@@ -81,7 +81,7 @@ function onDocumentKeyDown(event) {
             xc.fillStyle = "white";
             xc.fillRect(0, 0, 128, 128);
             xc.fillStyle = "black";
-            xc.font = "64pt arial bold";
+            xc.font = "64pt NYTFranklinMedium";
             xc.textAlign = "center";
             xc.fillText(keyCode === 8 ? "" : String.fromCharCode(keyCode), 64, 96);
 

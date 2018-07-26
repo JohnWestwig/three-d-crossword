@@ -60,7 +60,8 @@ function startTimer(display) {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     display.innerHTML = minutes+":"+seconds;
-    display.style.color = "white"; 
+    display.style.color = "white";
+    display.style.fontFamily = "NYTFranklinMedium"; 
 
  }
  timer();
