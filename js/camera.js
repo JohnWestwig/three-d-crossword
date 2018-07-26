@@ -1,8 +1,12 @@
-var camera, controls, scene, renderer, raycaster, timer, minutes, seconds;
-var mouse = new THREE.Vector2(), INTERSECTED, ACTIVE_SQUARE;
-
+var camera, controls, scene, renderer, raycaster;
+var inFocus = false;
+var clickedOnCube = false;
+var mouse = new THREE.Vector2(),
+  INTERSECTED,
+  ACTIVE_SQUARE;
+var timer, minutes, seconds;
 function init() {
-  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   scene = new THREE.Scene();
   raycaster = new THREE.Raycaster();
@@ -15,14 +19,14 @@ function init() {
   //camera.position.z = 500;
   timer = startTimer(60, document.getElementById("timer"));
 
-    //find puzzle center
-    var xCenter = dimension.x / 2.0;
-    var yCenter = dimension.y / 2.0;
-    var zCenter = dimension.z / 2.0;
+  //find puzzle center
+  var xCenter = dimension.x / 2.0;
+  var yCenter = dimension.y / 2.0;
+  var zCenter = dimension.z / 2.0;
 
-  camera.position.set(xCenter, -yCenter, dimension.z  + 5);
+  camera.position.set(xCenter, -yCenter, dimension.z + 5);
 
-    //controls
+  //controls
   controls = new THREE.TrackballControls(camera, xCenter, yCenter, zCenter);
 
   controls.rotateSpeed = 5.0;
@@ -35,15 +39,14 @@ function init() {
   controls.staticMoving = false;
   controls.dynamicDampingFactor = 0.2;
 
-    controls.minDistance = dimension.z;
-    controls.maxDistance = dimension.z * 5;
+  controls.minDistance = dimension.z;
+  controls.maxDistance = dimension.z * 5;
 
-  controls.keys = [ 65, 83, 68 ];
+  controls.keys = [65, 83, 68];
 
   window.addEventListener("resize", onWindowResize, false);
-  document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+  document.addEventListener("mousedown", onDocumentMouseDown, false);
   document.addEventListener("keydown", onDocumentKeyDown, false);
-
 }
 
 //To start: timer = startTimer(duration_in_seconds, html_element);
@@ -58,13 +61,8 @@ function startTimer(duration, display) {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   seconds = seconds < 10 ? "0" + seconds : seconds;
 
-//display is html id 
   display.innerHTML = minutes+":"+seconds;
-
   display.style.color = "white"; 
-
-
-  console.log(minutes+":"+seconds);
 
   if (diff <= 0) {
     start = Date.now() + 1000;
@@ -78,13 +76,13 @@ function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize(window.innerWidth, window.innerHeight);
   controls.handleResize();
   render();
 }
 
 function animate() {
-  requestAnimationFrame( animate );
+  requestAnimationFrame(animate);
   controls.update();
   render();
 }
