@@ -1,13 +1,17 @@
 var context = this;
 var dimension;
-var puzzleName = "puzzle.json";
+const defaultPuzzle = "puzzle.json";
 
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
   //xobj.overrideMimeType("application/json");
+  if (!window.name) {
+    window.name = defaultPuzzle;
+  }
+  var nextPuzzle = window.name;
   xobj.open(
     "GET",
-    "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+puzzleName,
+    "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+nextPuzzle,
     true
   ); // Replace 'my_data' with the path to your file
   xobj.onreadystatechange = function() {
@@ -16,6 +20,16 @@ function loadJSON(callback) {
       callback(xobj.responseText);
     }
   };
+  xobj.onloadend = () => {
+    if (xobj.status == 404 && nextPuzzle !== defaultPuzzle) {
+      xobj.open(
+        "GET",
+        "https://raw.githubusercontent.com/JohnWestwig/three-d-crossword/master/"+defaultPuzzle,
+        true
+      );
+      xobj.send(null);
+    }
+  }
   xobj.send(null);
 }
 
@@ -37,7 +51,6 @@ var loadPuzzle = () => {
 
     document.body.appendChild( renderer.domElement );
 
-    console.log('loadJSON');
 
     const boxSize = 1;
 
@@ -75,20 +88,19 @@ var loadPuzzle = () => {
             var y = document.getElementById("clues_y");
             var z = document.getElementById("clues_z");
 
-            // make clue bold
-            //clue_number++;
-            // var clue = document.createElement("a");
-            // clue.innerHTML = clue_number.toString().bold();
+            // get clue Id
             var clue = document.createElement("a");
-            clue.innerHTML = w.Id;
-            clue.style.padding = "0px 30px 0px 0px"; // T R B L
+            clue.innerHTML = w.Id.toString().bold();
+            clue.style.background = "rgba(0,0,0,0)";
+
 
             // add clue to Id
-            var divtest = document.createElement("span");
+            var divtest = document.createElement("div");
             divtest.innerHTML = w.clue;
-
+            divtest.style.display = "inline";
+            divtest.style.padding = "0px 0px 0px 15px"; // T R B L
             clue.appendChild(divtest);
-            clue.style.padding = "10px 0px 0px 10px";
+            clue.style.padding = "0px 0px 0px 10px";
             clue.style.color = "white";
             clue.style.textAlign = "left";
 
@@ -96,13 +108,18 @@ var loadPuzzle = () => {
             var br = document.createElement("br");
             clue.appendChild(br);
 
+            var br2 = document.createElement("br");
+
             // add clue to xyz window
             if (w.direction == "x") {
-              x.append(clue);
+              x.appendChild(clue);
+              x.appendChild(br2);
             } else if (w.direction == "y") {
               y.appendChild(clue);
+              y.appendChild(br2);
             } else {
               z.appendChild(clue);
+              z.appendChild(br2);
             }
 
             var originalPosition = w.start[w.direction];
