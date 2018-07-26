@@ -1,6 +1,6 @@
 .row {
-  font-family: arial;
-  font-size: 12px;
+  font-family: NYTFranklinLight;
+  font-size: 15px;
   padding-left: 10px;
 }
 
@@ -134,7 +134,7 @@ nav, .hamburger, .cover {
 a:hover {
   font-weight: bold;
 }
-  
+
 .modal {
   margin:0;
   position:absolute;
@@ -145,12 +145,12 @@ a:hover {
   background-color: white;
   border-radius: 20px;
   width: 300px;
-  height: 160px;
-
+  height: 150px;
   box-shadow: 3px 3px 3px 1px grey;
 }
 
 button {
+  font-family: NYTFranklinBold;
   margin:0;
   position:absolute;
   top:65%;
