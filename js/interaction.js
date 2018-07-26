@@ -128,7 +128,6 @@ function onDocumentKeyDown(event) {
     }
 }
 
-
 function resetScene(nextPuzzle) {
   window.name = nextPuzzle;
   location.reload();
