@@ -114,6 +114,19 @@ function onDocumentKeyDown( event ) {
   }
 }
 
+var c_link = document.getElementById("clue_id");
+
+c_link.onclick = function() {
+  var id = c_link.substr(0, c_link.indexOf(' '));
+  console.log("hello");
+  // add click event
+  // if you click on a link
+  // parse link for number
+  // get id from number
+  // get coordinates
+  // call function that colors all cubes in word blue based on coordinates
+}
+
 function resetScene(nextPuzzle) {
   window.name = nextPuzzle;
   location.reload();

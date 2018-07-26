@@ -5,9 +5,6 @@ const defaultPuzzle = "puzzle.json";
 function loadJSON(callback) {
   var xobj = new XMLHttpRequest();
   //xobj.overrideMimeType("application/json");
-  if (!window.name) {
-    window.name = defaultPuzzle;
-  }
   var nextPuzzle = window.name;
   xobj.open(
     "GET",
@@ -91,7 +88,7 @@ var loadPuzzle = () => {
 
             // get clue Id
             var clue = document.createElement("a");
-            clue.innerHTML = w.Id.toString().bold();
+            clue.innerHTML = w.Id.toString().bold() + " ";
             clue.style.background = "rgba(0,0,0,0)";
 
 
@@ -104,6 +101,8 @@ var loadPuzzle = () => {
             clue.style.padding = "0px 0px 0px 10px";
             clue.style.color = "white";
             clue.style.textAlign = "left";
+
+            clue.setAttribute("id", "clue_id");
 
             // insert break after each clue
             var br = document.createElement("br");
