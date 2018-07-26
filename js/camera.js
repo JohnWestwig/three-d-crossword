@@ -1,4 +1,6 @@
 var camera, controls, scene, renderer, raycaster;
+var inFocus = false;
+var clickedOnCube = false;
 var mouse = new THREE.Vector2(),
   INTERSECTED,
   ACTIVE_SQUARE;

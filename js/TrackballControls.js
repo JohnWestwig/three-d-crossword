@@ -204,6 +204,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   };
 
   this.panCamera = (function() {
+    inFocus = false;
     var mouseChange = new THREE.Vector2(),
       objectUp = new THREE.Vector3(),
       pan = new THREE.Vector3();
@@ -325,13 +326,13 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   /*
   * function that focuses to the highlighted word's orientation when clicked on
    */
-  this.focus = function(x, y, z) {
+  this.focus = function(xx, yy, zz) {
     _state = STATE.NONE;
     _prevState = STATE.NONE;
 
     _this.target = new THREE.Vector3(x, -y, z);
     //_this.object.position.copy( _this.position0 );
-    _this.object.position.y = 0;
+    //_this.object.position.y = 0;
     _this.object.up.copy(_this.up0);
 
     _eye.subVectors(_this.object.position, _this.target);
@@ -341,6 +342,61 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
     _this.dispatchEvent(changeEvent);
 
     lastPosition.copy(_this.object.position);
+    var mid = new THREE.Vector3(
+      _this.object.position.x,
+      _this.object.position.y,
+      _this.object.position.z - 3
+    );
+    if (_this.object.position.y < -0.2) {
+      mid = new THREE.Vector3(
+        _this.object.position.x,
+        _this.object.position.y + 2,
+        _this.object.position.z - 3
+      );
+    } else if (_this.object.position.y > 0.2) {
+      mid = new THREE.Vector3(
+        _this.object.position.x,
+        _this.object.position.y - 2,
+        _this.object.position.z - 3
+      );
+    }
+
+    var end = new THREE.Vector3(xx, -yy, zz);
+    var spline = new THREE.CatmullRomCurve3([_this.object.position, mid, end]);
+
+    var camPosIndex = 0;
+    function updateThis() {
+      if (inFocus) {
+        renderer.render(scene, camera);
+        requestAnimationFrame(updateThis);
+
+        camPosIndex++;
+        if (camPosIndex > 100) {
+          //camPosIndex = 0;
+          inFocus = false;
+        }
+
+        //_this.target.copy(_this.target0);
+        var camPos = spline.getPoint(camPosIndex / 1000);
+        //var camRot = spline.getTangent(camPosIndex / 1000);
+
+        //_this.object.position.x = camPos.x;
+        //_this.object.position.y = camPos.y;
+        //     _this.object.position.z = camPos.z;
+          //if (_this.object.position.y > 0.5 || _this.object.position.y < -0.5 ) {
+              _this.object.position.y = camPos.y;
+          //}
+
+        // camera.rotation.x = camRot.x;
+        // camera.rotation.y = camRot.y;
+        //camera.position.z = camPos.z;
+
+        //camera.lookAt(spline.getPoint((camPosIndex+1) / 1000));
+      } else {
+        return;
+      }
+    }
+    updateThis();
   };
 
   // listeners
@@ -399,6 +455,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   }
 
   function mousemove(event) {
+    inFocus = false;
     if (_this.enabled === false) return;
 
     event.preventDefault();
@@ -428,6 +485,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   }
 
   function mousewheel(event) {
+    inFocus = false;
     if (_this.enabled === false) return;
 
     if (_this.noZoom === true) return;
@@ -457,6 +515,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   }
 
   function touchstart(event) {
+    inFocus = false;
     if (_this.enabled === false) return;
 
     switch (event.touches.length) {
@@ -488,6 +547,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   }
 
   function touchmove(event) {
+    inFocus = false;
     if (_this.enabled === false) return;
 
     event.preventDefault();
@@ -515,6 +575,7 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
   }
 
   function touchend(event) {
+    inFocus = false;
     if (_this.enabled === false) return;
 
     switch (event.touches.length) {

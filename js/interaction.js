@@ -14,6 +14,7 @@ function onDocumentMouseDown(event) {
     }
     INTERSECTED = intersects[0].object;
   } else {
+    clickedOnCube = false;
     directionIndex = (directionIndex + 1) % 3;
   }
 
@@ -44,11 +45,16 @@ function onDocumentMouseDown(event) {
   }
   document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
   if (intersects.length > 0) {
-    controls.focus(
-      INTERSECTED.start[dir].x,
-      INTERSECTED.start[dir].y,
-      INTERSECTED.start[dir].z
-    );
+    inFocus = true;
+    clickedOnCube = true;
+    // controls.focus(
+    //   INTERSECTED.start[dir].x,
+    //   INTERSECTED.start[dir].y,
+    //   INTERSECTED.start[dir].z
+    // );
+  } else {
+    inFocus = false;
+    clickedOnCube = false;
   }
   INTERSECTED.material.color.set(0xfcd931);
 }
