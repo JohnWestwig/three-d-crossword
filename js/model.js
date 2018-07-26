@@ -19,6 +19,7 @@ function loadJSON(callback) {
   xobj.send(null);
 }
 
+
 //var puzzle;
 var loadPuzzle = () => {
   loadJSON(function(response) {
@@ -76,18 +77,25 @@ var loadPuzzle = () => {
 
             // make clue bold
             clue_number++;
-            var c = clue_number.toString().bold();
+            var clue = document.createElement("a");
+            clue.innerHTML = clue_number.toString().bold();
+            clue.style.padding = "0px 30px 0px 0px";
 
-            var divtest = document.createElement("div");
-            divtest.innerHTML = c + '\t' + w.clue;
-            divtest.style.padding = "10px 0px 0px 0px";
+            var divtest = document.createElement("body");
+            divtest.innerHTML = w.clue;
+
+            clue.appendChild(divtest);
+            clue.style.padding = "10px 0px 0px 10px";
+            clue.style.color = "white";
+            clue.style.textAlign = "left";
+
 
             if (w.direction == "x") {
-              x.appendChild(divtest);
+              x.appendChild(clue);
             } else if (w.direction == "y") {
-              y.appendChild(divtest);
+              y.appendChild(clue);
             } else {
-              z.appendChild(divtest);
+              z.appendChild(clue);
             }
 
             var originalPosition = w.start[w.direction];
