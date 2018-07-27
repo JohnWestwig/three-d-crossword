@@ -95,7 +95,7 @@ function onDocumentKeyDown(event) {
                 audio.play();
                 // pop up window
                 document.getElementById("finish").style.display = "block";
-                //document.getElementById("finishTime").appendChild(timer.minutes); 
+                document.getElementById("finishTime").innerHTML = minutes+":"+seconds; 
                 document.getElementById("overlay").style.opacity = "0.8";
                 // hamburger opacity
                 document.getElementById("bar1").style.opacity = "0.2";
@@ -196,7 +196,7 @@ function autoComplete() {
   audio.play();
   // pop up window
   document.getElementById("finish").style.display = "block";
-  //document.getElementById("finishTime").appendChild(timer.minutes); 
+  document.getElementById("finishTime").innerHTML = minutes+":"+seconds; 
   document.getElementById("overlay").style.opacity = "0.8";
   // hamburger opacity
   document.getElementById("bar1").style.opacity = "0.2";
