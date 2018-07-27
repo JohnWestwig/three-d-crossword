@@ -155,6 +155,7 @@ a:hover {
 }
 
 .modal {
+  z-index: 10000; 
   margin:0;
   position:absolute;
   top:50%;
