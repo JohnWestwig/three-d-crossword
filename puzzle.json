@@ -88,7 +88,7 @@
 		},
 		{
 			"Id": 8,
-			"clue": "Celebration helper",
+			"clue": "Celebratory reaction",
 			"start": {
 				"x": 1,
 				"y": 9,
@@ -121,18 +121,18 @@
 		},
 		{
 			"Id": 11,
-			"clue": "Ensuing traveler",
+			"clue": "Twitter count",
 			"start": {
 				"x": 7,
 				"y": 3,
 				"z": 5
 			},
 			"direction": "y",
-			"entry": "FOLLOWER"
+			"entry": "FOLLOWERS"
 		},
 		{
 			"Id": 12,
-			"clue": "Result of a strike?",
+			"clue": "Strike leftovers?",
 			"start": {
 				"x": 1,
 				"y": 4,
