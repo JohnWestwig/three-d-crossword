@@ -107,6 +107,39 @@
 			},
 			"direction": "y",
 			"entry": "UNITY"
+		},
+		{
+			"Id": 10,
+			"clue": "Cause of new puzzle perspectives",
+			"start": {
+				"x": 7,
+				"y": 9,
+				"z": 2
+			},
+			"direction": "z",
+			"entry": "MAKERWEEK"
+		},
+		{
+			"Id": 11,
+			"clue": "Ensuing traveler",
+			"start": {
+				"x": 7,
+				"y": 3,
+				"z": 5
+			},
+			"direction": "y",
+			"entry": "FOLLOWER"
+		},
+		{
+			"Id": 12,
+			"clue": "Result of a strike?",
+			"start": {
+				"x": 1,
+				"y": 4,
+				"z": 5
+			},
+			"direction": "x",
+			"entry": "DEADWOOD"
 		}
 	]
 }
