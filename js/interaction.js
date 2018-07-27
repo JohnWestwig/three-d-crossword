@@ -172,6 +172,38 @@ function gameOver(scene) {
   );
 }
 
+function autoComplete() {
+  scene.children.forEach(
+    w => {
+      var x = document.createElement("canvas");
+      var xc = x.getContext("2d");
+      x.width = x.height = 128;
+      xc.fillStyle = "white";
+      xc.fillRect(0, 0, 128, 128);
+      xc.fillStyle = "black";
+      xc.font = "64pt NYTFranklinMedium";
+      xc.textAlign = "center";
+      xc.fillText(w.correctValue+"", 64, 96);
+      w.currentValue = w.correctValue;
+      var cmap = new THREE.Texture(x);
+      w.material.map = cmap;
+      w.material.map.needsUpdate = true;
+    }
+  );
+  document.removeEventListener("keydown", onDocumentKeyDown);
+  clearInterval(timer);
+  var audio = new Audio("end_music.mp3");
+  audio.play();
+  // pop up window
+  document.getElementById("finish").style.display = "block";
+  //document.getElementById("finishTime").appendChild(timer.minutes); 
+  document.getElementById("overlay").style.opacity = "0.8";
+  // hamburger opacity
+  document.getElementById("bar1").style.opacity = "0.2";
+  document.getElementById("bar2").style.opacity = "0.2";
+  document.getElementById("bar3").style.opacity = "0.2";
+}
+
 function toggleSidenav() {
   document.body.classList.toggle("sidenav-active");
 }

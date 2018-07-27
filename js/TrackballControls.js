@@ -199,7 +199,6 @@ THREE.TrackballControls = function(object, x, y, z, domElement) {
               _lastAngle = angle;
           }
       } else if (!_this.staticMoving && _lastAngle) {
-        console.log("FSHIHFOSIHAJ K");
         _lastAngle *= Math.sqrt(1.0 - _this.dynamicDampingFactor);
         _eye.copy(_this.object.position).sub(_this.target);
         quaternion.setFromAxisAngle(_lastAxis, _lastAngle);
