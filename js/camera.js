@@ -38,7 +38,7 @@ function init() {
   controls.staticMoving = false;
   controls.dynamicDampingFactor = 0.2;
 
-  controls.minDistance = dimension.z;
+  controls.minDistance = zCenter;
   controls.maxDistance = dimension.z * 5;
 
   controls.keys = [65, 83, 68];
