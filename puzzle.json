@@ -4,9 +4,9 @@
 	"puzzle_meta": {
 		"title": "The best 3-D crossword ever",
 		"editor": "Chloe Le",
-		"height": 15,
-		"width": 15,
-		"depth": 15,
+		"width": 13,
+		"height": 13,
+		"depth": 11,
 		"author": "Jack Frysinger"
 	},
 	"puzzle_data": [{
