@@ -65,61 +65,57 @@ function onDocumentKeyDown(event) {
   if (keyCode == 9) {
     event.preventDefault();
     var randomlySelectWord = function() {
-        var random = Math.floor(Math.random() * scene.children.length);
-        var randomCube = scene.children[random];
-        var randomDirIndex = Math.floor(Math.random() * 3);
-        var dir = ["x", "y", "z"][randomDirIndex];
-        var keys = Object.keys(randomCube.words);
-        var counter;
-        for (counter = 0; counter < 3; counter++) {
-            dir = ["x", "y", "z"][randomDirIndex];
-            directionIndex = randomDirIndex;
-            if (!keys.includes(dir)) {
-                randomDirIndex = (randomDirIndex + 1) % 3;
-            } else {
-                break;
-            }
+      var random = Math.floor(Math.random() * scene.children.length);
+      var randomCube = scene.children[random];
+      var randomDirIndex = Math.floor(Math.random() * 3);
+      var dir = ["x", "y", "z"][randomDirIndex];
+      var keys = Object.keys(randomCube.words);
+      var counter;
+      for (counter = 0; counter < 3; counter++) {
+        dir = ["x", "y", "z"][randomDirIndex];
+        directionIndex = randomDirIndex;
+        if (!keys.includes(dir)) {
+          randomDirIndex = (randomDirIndex + 1) % 3;
+        } else {
+          break;
         }
-        // if randomly chose the same word as before, run the function again
-        if (activeWord === randomCube.words[dir]) {
-            randomlySelectWord();
-            return;
+      }
+      // if randomly chose the same word as before, run the function again
+      if (activeWord === randomCube.words[dir]) {
+        randomlySelectWord();
+        return;
+      }
+      activeWord = randomCube.words[dir];
+      scene.children.forEach(cube => {
+        var cubePos = new THREE.Vector3();
+        cubePos.copy(cube.position);
+        cubePos.y = -1 * cubePos.y;
+        var cubeStart = new THREE.Vector3();
+        if (cube.start[dir]) {
+          cubeStart.copy(cube.start[dir]);
         }
-        activeWord = randomCube.words[dir];
-        scene.children.forEach(cube => {
-            var cubePos = new THREE.Vector3();
-            cubePos.copy(cube.position);
-            cubePos.y = -1 * cubePos.y;
-            var cubeStart = new THREE.Vector3();
-            if (cube.start[dir]) {
-                cubeStart.copy(cube.start[dir]);
-            }
-            if (
-                activeWord &&
-                cube.words[dir] === activeWord &&
-                cubeStart.x == cubePos.x &&
-                cubeStart.y == cubePos.y &&
-                cubeStart.z == cubePos.z
-            ) {
-                INTERSECTED = cube;
-                cube.material.color.set(0xfcd931);
-            } else if (activeWord && cube.words[dir] === activeWord) {
-                cube.material.color.set(0xaedaf5);
-            } else {
-                cube.material.color.set(0xffffff);
-            }
-        });
-        document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
-    }
+        if (
+          activeWord &&
+          cube.words[dir] === activeWord &&
+          cubeStart.x == cubePos.x &&
+          cubeStart.y == cubePos.y &&
+          cubeStart.z == cubePos.z
+        ) {
+          INTERSECTED = cube;
+          cube.material.color.set(0xfcd931);
+        } else if (activeWord && cube.words[dir] === activeWord) {
+          cube.material.color.set(0xaedaf5);
+        } else {
+          cube.material.color.set(0xffffff);
+        }
+      });
+      document.getElementById("currentClue").innerHTML = INTERSECTED.clues[dir];
+    };
     randomlySelectWord();
-  }
-
-  else if (keyCode == 220) {
+  } else if (keyCode == 220) {
     resetScene("puzzle.json");
     return;
-  }
-
-  else if (INTERSECTED) {
+  } else if (INTERSECTED) {
     if (
       (keyCode >= 65 && keyCode <= 120) ||
       (keyCode == 32 && keyCode == 0) ||
