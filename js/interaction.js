@@ -4,6 +4,7 @@ function onDocumentMouseDown(event) {
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
   camera.updateMatrixWorld();
+
   raycaster.setFromCamera(mouse, camera);
 
   var intersects = raycaster.intersectObjects(scene.children);
@@ -92,6 +93,14 @@ function onDocumentKeyDown(event) {
                 clearInterval(timer);
                 var audio = new Audio("end_music.mp3");
                 audio.play();
+                // pop up window
+                document.getElementById("finish").style.display = "block";
+                //document.getElementById("finishTime").appendChild(timer.minutes); 
+                document.getElementById("overlay").style.opacity = "0.8";
+                // hamburger opacity
+                document.getElementById("bar1").style.opacity = "0.2";
+                document.getElementById("bar2").style.opacity = "0.2";
+                document.getElementById("bar3").style.opacity = "0.2";
             }
 
             var cmap = new THREE.Texture(x);
@@ -130,9 +139,26 @@ function onDocumentKeyDown(event) {
 }
 
 function onOkClick() {
+  document.getElementById("overlay").style.opacity = "0.0";
+  // hamburger opacity
+  document.getElementById("bar1").style.opacity = "1.0";
+  document.getElementById("bar2").style.opacity = "1.0";
+  document.getElementById("bar3").style.opacity = "1.0";
+
   document.getElementById("start").style.display = "none";
   document.addEventListener("keydown", onDocumentKeyDown, false);
   timer = startTimer(document.getElementById("timer"));
+}
+
+function onOkClickFinish() {
+  document.getElementById("overlay").style.opacity = "0.0";
+
+  // hamburger opacity
+  document.getElementById("bar1").style.opacity = "1.0";
+  document.getElementById("bar2").style.opacity = "1.0";
+  document.getElementById("bar3").style.opacity = "1.0";
+
+  document.getElementById("finish").style.display = "none";
 }
 
 function resetScene(nextPuzzle) {
