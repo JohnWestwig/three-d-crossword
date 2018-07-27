@@ -14,7 +14,7 @@ function onDocumentMouseDown(event) {
       INTERSECTED.material.color.setHex(0xffffff);
     }
     INTERSECTED = intersects[0].object;
-  } else if ( intersects.length > 0 && INTERSECTED === intersects[0].object ) {
+  } else if (intersects.length > 0 && INTERSECTED === intersects[0].object) {
     directionIndex = (directionIndex + 1) % 3;
   }
 
@@ -56,86 +56,127 @@ function onDocumentMouseDown(event) {
     inFocus = false;
     clickedOnCube = false;
   }
-    INTERSECTED.material.color.set( 0xFCD931 );
+  INTERSECTED.material.color.set(0xfcd931);
 }
 
 function onDocumentKeyDown(event) {
-    if (event.altKey && event.which == 70) {
-        context.reset();
+  const keyCode = event.which;
+  if (keyCode == 9) {
+    event.preventDefault();
+    var random = Math.floor(Math.random() * scene.children.length);
+    var randomCube = scene.children[random];
+    var randomDirIndex = Math.floor(Math.random() * 3);
+    var dir = ["x", "y", "z"][randomDirIndex];
+    var keys = Object.keys(randomCube.words);
+    var counter;
+    for (counter = 0; counter < 3; counter++) {
+      dir = ["x", "y", "z"][randomDirIndex];
+      directionIndex = randomDirIndex;
+      if (!keys.includes(dir)) {
+        randomDirIndex = (randomDirIndex + 1) % 3;
+      } else {
+        break;
+      }
     }
-    const keyCode = event.which;
+    var activeWord = randomCube.words[dir];
+    console.log(activeWord);
+    scene.children.forEach(cube => {
+      var cubePos = new THREE.Vector3();
+      cubePos.copy(cube.position);
+      cubePos.y = -1 * cubePos.y;
+      var cubeStart = new THREE.Vector3();
+      if (cube.start[dir]) {
+        cubeStart.copy(cube.start[dir]);
+      }
+      if (
+        activeWord &&
+        cube.words[dir] === activeWord &&
+        cubeStart.x == cubePos.x &&
+        cubeStart.y == cubePos.y &&
+        cubeStart.z == cubePos.z
+      ) {
+        INTERSECTED = cube;
+        cube.material.color.set(0xfcd931);
+      } else if (activeWord && cube.words[dir] === activeWord) {
+        cube.material.color.set(0xaedaf5);
+      } else {
+        cube.material.color.set(0xffffff);
+      }
+    });
+  }
 
-    if (keyCode == 220) {
-        resetScene("puzzle.json");
-        return;
+  else if (keyCode == 220) {
+    resetScene("puzzle.json");
+    return;
+  }
+
+  else if (INTERSECTED) {
+    if (
+      (keyCode >= 65 && keyCode <= 120) ||
+      (keyCode == 32 && keyCode == 0) ||
+      keyCode === 8
+    ) {
+      var x = document.createElement("canvas");
+      var xc = x.getContext("2d");
+      x.width = x.height = 128;
+      xc.fillStyle = "white";
+      xc.fillRect(0, 0, 128, 128);
+      xc.fillStyle = "black";
+      xc.font = "64pt NYTFranklinMedium";
+      xc.textAlign = "center";
+      xc.fillText(keyCode === 8 ? "" : String.fromCharCode(keyCode), 64, 96);
+
+      INTERSECTED.currentValue = String.fromCharCode(keyCode);
+
+      if (gameOver(scene)) {
+        document.removeEventListener("keydown", onDocumentKeyDown);
+        clearInterval(timer);
+        var audio = new Audio("end_music.mp3");
+        audio.play();
+        // pop up window
+        document.getElementById("finish").style.display = "block";
+        document.getElementById("finishTime").innerHTML =
+          minutes + ":" + seconds;
+        document.getElementById("overlay").style.opacity = "0.8";
+        // hamburger opacity
+        document.getElementById("bar1").style.opacity = "0.2";
+        document.getElementById("bar2").style.opacity = "0.2";
+        document.getElementById("bar3").style.opacity = "0.2";
+      }
+
+      var cmap = new THREE.Texture(x);
+      INTERSECTED.material.map = cmap;
+      INTERSECTED.material.map.needsUpdate = true;
+
+      var clicked = INTERSECTED;
+      var newPosition = INTERSECTED.position.clone();
+      if (!window.hasOwnProperty("directionIndex")) {
+        directionIndex = 0;
+      }
+      var dir = ["x", "y", "z"][directionIndex];
+      var keys = Object.keys(INTERSECTED.words);
+      if (!keys.includes(dir)) {
+        directionIndex = (directionIndex + 1) % 3;
+        onDocumentKeyDown(event);
+      }
+      if (dir === "y") {
+        newPosition[dir] -= keyCode === 8 ? -1 : 1;
+      } else {
+        newPosition[dir] += keyCode === 8 ? -1 : 1;
+      }
+
+      var nextBlock = scene.getObjectByName(
+        newPosition.x + "-" + newPosition.y + "-" + newPosition.z
+      );
+      if (nextBlock) {
+        INTERSECTED.material.color.setHex(0xaedaf5);
+        INTERSECTED = scene.getObjectByName(
+          newPosition.x + "-" + newPosition.y + "-" + newPosition.z
+        );
+        INTERSECTED.material.color.setHex(0xfcd931);
+      }
     }
-
-    if (INTERSECTED) {
-        if (
-            (keyCode >= 65 && keyCode <= 120) ||
-            (keyCode == 32 && keyCode == 0) ||
-            keyCode === 8
-        ) {
-            var x = document.createElement("canvas");
-            var xc = x.getContext("2d");
-            x.width = x.height = 128;
-            xc.fillStyle = "white";
-            xc.fillRect(0, 0, 128, 128);
-            xc.fillStyle = "black";
-            xc.font = "64pt NYTFranklinMedium";
-            xc.textAlign = "center";
-            xc.fillText(keyCode === 8 ? "" : String.fromCharCode(keyCode), 64, 96);
-
-            INTERSECTED.currentValue = String.fromCharCode(keyCode);
-
-            if (gameOver(scene)) {
-                document.removeEventListener("keydown", onDocumentKeyDown);
-                clearInterval(timer);
-                var audio = new Audio("end_music.mp3");
-                audio.play();
-                // pop up window
-                document.getElementById("finish").style.display = "block";
-                document.getElementById("finishTime").innerHTML = minutes+":"+seconds; 
-                document.getElementById("overlay").style.opacity = "0.8";
-                // hamburger opacity
-                document.getElementById("bar1").style.opacity = "0.2";
-                document.getElementById("bar2").style.opacity = "0.2";
-                document.getElementById("bar3").style.opacity = "0.2";
-            }
-
-            var cmap = new THREE.Texture(x);
-            INTERSECTED.material.map = cmap;
-            INTERSECTED.material.map.needsUpdate = true;
-
-            var clicked = INTERSECTED;
-            var newPosition = INTERSECTED.position.clone();
-            if (!window.hasOwnProperty("directionIndex")) {
-                directionIndex = 0;
-            }
-            var dir = ["x", "y", "z"][directionIndex];
-            var keys = Object.keys(INTERSECTED.words);
-            if (!keys.includes(dir)) {
-                directionIndex = (directionIndex + 1) % 3;
-                onDocumentKeyDown(event);
-            }
-            if (dir === "y") {
-                newPosition[dir] -= keyCode === 8 ? -1 : 1;
-            } else {
-                newPosition[dir] += keyCode === 8 ? -1 : 1;
-            }
-
-            var nextBlock = scene.getObjectByName(
-                newPosition.x + "-" + newPosition.y + "-" + newPosition.z
-            );
-            if (nextBlock) {
-                INTERSECTED.material.color.setHex(0xaedaf5);
-                INTERSECTED = scene.getObjectByName(
-                    newPosition.x + "-" + newPosition.y + "-" + newPosition.z
-                );
-                INTERSECTED.material.color.setHex(0xfcd931);
-            }
-        }
-    }
+  }
 }
 
 function onOkClick() {
@@ -173,30 +214,28 @@ function gameOver(scene) {
 }
 
 function autoComplete() {
-  scene.children.forEach(
-    w => {
-      var x = document.createElement("canvas");
-      var xc = x.getContext("2d");
-      x.width = x.height = 128;
-      xc.fillStyle = "white";
-      xc.fillRect(0, 0, 128, 128);
-      xc.fillStyle = "black";
-      xc.font = "64pt NYTFranklinMedium";
-      xc.textAlign = "center";
-      xc.fillText(w.correctValue+"", 64, 96);
-      w.currentValue = w.correctValue;
-      var cmap = new THREE.Texture(x);
-      w.material.map = cmap;
-      w.material.map.needsUpdate = true;
-    }
-  );
+  scene.children.forEach(w => {
+    var x = document.createElement("canvas");
+    var xc = x.getContext("2d");
+    x.width = x.height = 128;
+    xc.fillStyle = "white";
+    xc.fillRect(0, 0, 128, 128);
+    xc.fillStyle = "black";
+    xc.font = "64pt NYTFranklinMedium";
+    xc.textAlign = "center";
+    xc.fillText(w.correctValue + "", 64, 96);
+    w.currentValue = w.correctValue;
+    var cmap = new THREE.Texture(x);
+    w.material.map = cmap;
+    w.material.map.needsUpdate = true;
+  });
   document.removeEventListener("keydown", onDocumentKeyDown);
   clearInterval(timer);
   var audio = new Audio("end_music.mp3");
   audio.play();
   // pop up window
   document.getElementById("finish").style.display = "block";
-  document.getElementById("finishTime").innerHTML = minutes+":"+seconds; 
+  document.getElementById("finishTime").innerHTML = minutes + ":" + seconds;
   document.getElementById("overlay").style.opacity = "0.8";
   // hamburger opacity
   document.getElementById("bar1").style.opacity = "0.2";
