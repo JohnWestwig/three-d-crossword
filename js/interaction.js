@@ -95,7 +95,7 @@ function onDocumentKeyDown(event) {
                 audio.play();
                 // pop up window
                 document.getElementById("finish").style.display = "block";
-                document.getElementById("finishTime").innerHTML = minutes+":"+seconds; 
+                document.getElementById("finishTime").innerHTML = minutes+":"+seconds;
                 document.getElementById("overlay").style.opacity = "0.8";
                 // hamburger opacity
                 document.getElementById("bar1").style.opacity = "0.2";
@@ -145,9 +145,13 @@ function onOkClick() {
   document.getElementById("bar2").style.opacity = "1.0";
   document.getElementById("bar3").style.opacity = "1.0";
 
+  //nav opacity
+  document.getElementById("row").style.opacity = "1.0";
+
   document.getElementById("start").style.display = "none";
   document.addEventListener("keydown", onDocumentKeyDown, false);
   timer = startTimer(document.getElementById("timer"));
+  document.getElementById("autoCompleteButton").style.display = "block";
 }
 
 function onOkClickFinish() {
@@ -159,6 +163,7 @@ function onOkClickFinish() {
   document.getElementById("bar3").style.opacity = "1.0";
 
   document.getElementById("finish").style.display = "none";
+  document.getElementById("autoCompleteButton").style.display = "none";
 }
 
 function resetScene(nextPuzzle) {
@@ -196,12 +201,15 @@ function autoComplete() {
   audio.play();
   // pop up window
   document.getElementById("finish").style.display = "block";
-  document.getElementById("finishTime").innerHTML = minutes+":"+seconds; 
+  document.getElementById("finishTime").innerHTML = minutes+":"+seconds;
   document.getElementById("overlay").style.opacity = "0.8";
   // hamburger opacity
   document.getElementById("bar1").style.opacity = "0.2";
   document.getElementById("bar2").style.opacity = "0.2";
   document.getElementById("bar3").style.opacity = "0.2";
+
+  // nav opacity
+  document.getElementById("row").style.opacity = "0.2"; 
 }
 
 function toggleSidenav() {

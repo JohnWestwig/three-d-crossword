@@ -61,6 +61,7 @@ function startTimer(display) {
 
     display.innerHTML = minutes+":"+seconds;
     display.style.color = "white";
+    display.style.textShadow = "1px 1px 2px black";
     display.style.fontFamily = "NYTFranklinMedium";
 
  }
