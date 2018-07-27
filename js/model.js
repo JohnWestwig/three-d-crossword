@@ -123,6 +123,8 @@ var loadPuzzle = () => {
         }
 
         var originalPosition = w.start[w.direction];
+        var originalStart = new THREE.Vector3();
+        originalStart.copy(w.start);
         for (i = 0; i < w.entry.length; i++) {
           const wordGroup = new THREE.Group();
           puzzleGroup.add(wordGroup);
@@ -154,15 +156,14 @@ var loadPuzzle = () => {
             w.Id + w.direction.toUpperCase() + '\xa0\xa0' + w.clue;
           cube.correctValue = w.entry[i];
           cube.start = {};
-          cube.start[w.direction] = w.start;
-
+          cube.start[w.direction] = originalStart;
           if (!scene.getObjectByName(cube.name)) {
             scene.add(cube);
           } else {
             scene.getObjectByName(cube.name).words[w.direction] = w.entry;
             scene.getObjectByName(cube.name).clues[w.direction] =
               w.Id + w.direction.toUpperCase() + '\xa0\xa0' + w.clue;
-            scene.getObjectByName(cube.name).start[w.direction] = w.start;
+            scene.getObjectByName(cube.name).start[w.direction] = originalStart;
           }
         }
       }
