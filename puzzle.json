@@ -4,9 +4,9 @@
 	"puzzle_meta": {
 		"title": "The best 3-D crossword ever",
 		"editor": "Chloe Le",
-		"height": 4,
-		"width": 3,
-		"depth": 6,
+		"height": 15,
+		"width": 15,
+		"depth": 15,
 		"author": "Jack Frysinger"
 	},
 	"puzzle_data": [{
@@ -14,7 +14,7 @@
 			"clue": "Food for a whiney horse",
 			"start": {
 				"x": 0,
-				"y": 0,
+				"y": 1,
 				"z": 0
 			},
 			"direction": "x",
@@ -25,7 +25,7 @@
 			"clue": "Pseudonym prefix",
 			"start": {
 				"x": 1,
-				"y": 0,
+				"y": 1,
 				"z": 0
 			},
 			"direction": "y",
@@ -36,7 +36,7 @@
 			"clue": "Times timekeeper",
 			"start": {
 				"x": 1,
-				"y": 1,
+				"y": 2,
 				"z": 0
 			},
 			"direction": "z",
@@ -47,7 +47,7 @@
 			"clue": "Nice location?",
 			"start": {
 				"x": 1,
-				"y": 1,
+				"y": 2,
 				"z": 5
 			},
 			"direction": "y",
@@ -58,11 +58,88 @@
 			"clue": "JCF, sporadically",
 			"start": {
 				"x": 1,
-				"y": 1,
+				"y": 2,
 				"z": 2
 			},
 			"direction": "x",
 			"entry": "OOO"
+		},
+		{
+			"Id": 6,
+			"clue": "Hunny loving bear",
+			"start": {
+				"x": 1,
+				"y": 0,
+				"z": 3
+			},
+			"direction": "y",
+			"entry": "WINNIETHEPOOH"
+		},
+		{
+			"Id": 7,
+			"clue": "Happy hour spot",
+			"start": {
+				"x": 0,
+				"y": 5,
+				"z": 3
+			},
+			"direction": "x",
+			"entry": "BEERAUTHORITY"
+		},
+		{
+			"Id": 8,
+			"clue": "Celebration helper",
+			"start": {
+				"x": 1,
+				"y": 9,
+				"z": 3
+			},
+			"direction": "x",
+			"entry": "PARTYPARROT"
+		},
+		{
+			"Id": 9,
+			"clue": "Advantage for strikers",
+			"start": {
+				"x": 5,
+				"y": 5,
+				"z": 3
+			},
+			"direction": "y",
+			"entry": "UNITY"
+		},
+		{
+			"Id": 10,
+			"clue": "Cause of new puzzle perspectives",
+			"start": {
+				"x": 7,
+				"y": 9,
+				"z": 2
+			},
+			"direction": "z",
+			"entry": "MAKERWEEK"
+		},
+		{
+			"Id": 11,
+			"clue": "Ensuing traveler",
+			"start": {
+				"x": 7,
+				"y": 3,
+				"z": 5
+			},
+			"direction": "y",
+			"entry": "FOLLOWER"
+		},
+		{
+			"Id": 12,
+			"clue": "Result of a strike?",
+			"start": {
+				"x": 1,
+				"y": 4,
+				"z": 5
+			},
+			"direction": "x",
+			"entry": "DEADWOOD"
 		}
 	]
 }
