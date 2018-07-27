@@ -172,7 +172,7 @@ function gameOver(scene) {
   );
 }
 
-function autoComplete(scene) {
+function autoComplete() {
   scene.children.forEach(
     w => {
       var x = document.createElement("canvas");
@@ -190,6 +190,18 @@ function autoComplete(scene) {
       w.material.map.needsUpdate = true;
     }
   );
+  document.removeEventListener("keydown", onDocumentKeyDown);
+  clearInterval(timer);
+  var audio = new Audio("end_music.mp3");
+  audio.play();
+  // pop up window
+  document.getElementById("finish").style.display = "block";
+  //document.getElementById("finishTime").appendChild(timer.minutes); 
+  document.getElementById("overlay").style.opacity = "0.8";
+  // hamburger opacity
+  document.getElementById("bar1").style.opacity = "0.2";
+  document.getElementById("bar2").style.opacity = "0.2";
+  document.getElementById("bar3").style.opacity = "0.2";
 }
 
 function toggleSidenav() {
