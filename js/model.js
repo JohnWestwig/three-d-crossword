@@ -61,7 +61,7 @@ var loadPuzzle = () => {
         xc.fillStyle = "white";
         xc.fillRect(0, 0, 128, 128);
         xc.fillStyle = "black";
-        xc.font = "64pt arial bold";
+        xc.font = "64pt NYTFranklinBold";
         xc.textAlign = "center";
         //xc.fillText(letter, 64, 96);
 

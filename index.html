@@ -12,6 +12,8 @@
 			@font-face { font-family: NYTFranklinMedium; src: url('NYTFranklinMedium.otf'); }
 			@font-face { font-family: NYTFranklinBold; src: url('NYTFranklinBold.otf'); }
 			@font-face { font-family: NYTFranklinLight; src: url('NYTFranklinLight.otf'); }
+			@font-face { font-family: NYTKarnakDisplay; src: url('NYTKarnakDisplay.otf'); }
+
 		</style>
 	</head>
 	<body>
@@ -22,14 +24,8 @@
 		<script src="js/camera.js"></script>
 		<script src="js/interaction.js"></script>
 
-		<div class="hamburger" id="hamburger" onclick="toggleSidenav();">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-
 		<nav class="row">
-			<p style="color:white; margin-top: 20px; font-family:NYTFranklinBold"><b>X - Axis</b></p>
+			<p style="color:white; margin-top: 30px; font-family:NYTFranklinBold"><b>X - Axis</b></p>
   		<div class="scrollwindow" id="clues_x">
 				<p></p>
   		</div>
@@ -44,17 +40,31 @@
 		</nav>
 
 		<div class="main">
-      <div style="position:absolute; left:50%; margin-right:-50%; top:30px;transform:translate(-50%, -50%); margin:0; width: 30px; background-color:black" id="timer"></div>
-			<div id="start" class="modal">
-				<p style="margin:0; position:absolute; top:30%; left: 50%; margin-right: -50%; transform:translate(-50%, -50%); font-family:NYTFranklinMedium; font-size:15px; color:black">Ready to get started?</p>
-				<button onclick="onOkClick()">OK</button>
+			<div class="hamburger" id="hamburger" onclick="toggleSidenav();">
+				<div id="bar1"></div>
+				<div id="bar2"></div>
+				<div id="bar3"></div>
 			</div>
-				<img src="images/crossword-logo.png" style="width: 20%; height: auto; position: absolute; top: 10px; padding-left: 10px"></img>
-				<p id = "currentClue" style="position: fixed; bottom: 20px; width:100%; text-align: center; color: white; font-family: NYTFranklinMedium; font-size: 20px"></p>
-				<p style="position: fixed; bottom: 0; width:100%; text-align: center; color: gray; font-family: NYTFranklinMedium; font-size: 16px">Press Alt to snap the view</p>
+      <div style="position:absolute; left:50%; margin-right:-50%; top:30px;transform:translate(-50%, -50%); margin:0; width: 30px;" id="timer"></div>
+			<img src="images/crossword-logo.png" style="width: 20%; height: auto; position: absolute; top: 10px; padding-left: 10px"></img>
+			<p id = "currentClue" style="position: fixed; bottom: 20px; width:100%; text-align: center; color: white; font-family: NYTFranklinMedium; font-size: 20px"></p>
+			<p style="position: fixed; bottom: 0; width:100%; text-align: center; color: gray; font-family: NYTFranklinMedium; font-size: 16px">Press Alt to snap the view</p>
 		</div>
-
-
+		<div id="overlay"></div>
+		<div id="start" class="modal">
+			<p style="margin:0; position:absolute; top:30%; left: 50%; margin-right: -50%; transform:translate(-50%, -50%); font-family:NYTFranklinMedium; font-size:15px; color:black">Ready to get started?</p>
+			<button onclick="onOkClick()">OK</button>
+		</div>
+		<div id="finish">
+			<div style="margin:0; position:absolute; top:40%; left: 50%; margin-right: -50%; transform:translate(-50%, -50%); color:black">
+				<p style="margin:0; color:black; font-family:NYTKarnakDisplay; font-size:20px">Congratulations!</p><br>
+				<p style="margin:0; padding-left: 40px; color:black; font-family:NYTFranklinMedium; font-size:12px">You completed a </p><p style="font-family:NYTFranklinBold; font-size:12px; display:inline; padding-left:20px">3-D Crossword</p><p style="font-family:NYTFranklinMedium; font-size:12px; display:inline"> puzzle in</p><br>
+				<hr><br>
+				<p style="margin:0; color:black;font-family:NYTFranklinBold; font-size: 17px" id="finishTime"></p><br>
+				<hr>
+			</div>
+			<button style="top:80%" onclick="onOkClickFinish()">OK</button>
+		</div>
 
 	</body>
 </html>
