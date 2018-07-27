@@ -189,7 +189,7 @@ button {
   margin-right: -50%;
   transform:translate(-50%, -50%);
   background-color: rgb(90, 132, 195);
-  border-radius: 30px;
+  border-radius: 16px;
   color: white;
   padding: 8px 70px;
   text-align: center;
@@ -209,13 +209,28 @@ button {
   margin-right: -50%;
   transform:translate(-50%, -50%);
   background-color: white;
-  border-radius: 20px;
-  width: 300px;
-  height: 250px;
+  width: 400px;
+  height: 350px;
   box-shadow: 3px 3px 3px 1px grey;
   display: none;
 }
 
 hr {
   width: 100%;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    color: #aaa;
+    left: 94%;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

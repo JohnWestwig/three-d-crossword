@@ -56,14 +56,14 @@
 			<button onclick="onOkClick()">OK</button>
 		</div>
 		<div id="finish">
-			<div style="margin:0; position:absolute; top:40%; left: 50%; margin-right: -50%; transform:translate(-50%, -50%); color:black">
-				<p style="margin:0; color:black; font-family:NYTKarnakDisplay; font-size:20px">Congratulations!</p><br>
-				<p style="margin:0; padding-left: 40px; color:black; font-family:NYTFranklinMedium; font-size:12px">You completed a </p><p style="font-family:NYTFranklinBold; font-size:12px; display:inline; padding-left:20px">3-D Crossword</p><p style="font-family:NYTFranklinMedium; font-size:12px; display:inline"> puzzle in</p><br>
+			<div style="margin:0; position:absolute; top:60%; left: 50%; margin-right: -50%; transform:translate(-50%, -50%); color:black">
+				<p style="margin:0; color:black; font-family:NYTKarnakDisplay; font-size:30px">Congratulations!</p><br>
+				<p style="margin:0; position:absolute; left:50%; margin-right: -50%; transform:translate(-50%, -50%); color:black; font-family:NYTFranklinMedium; font-size:14px">You finished a <span style="font-family:NYTFranklinBold">3-D Crossword</span> puzzle in</p><br>
 				<hr><br>
-				<p style="margin:0; color:black;font-family:NYTFranklinBold; font-size: 17px" id="finishTime"></p><br>
+				<p style="margin:0; position:absolute; top:80%; left: 50%; margin-right: -50%; transform:translate(-50%, -50%); color:black;font-family:NYTKarnakDisplay; font-size: 17px" id="finishTime">time</p><br>
 				<hr>
 			</div>
-			<button style="top:80%" onclick="onOkClickFinish()">OK</button>
+			<span onclick="onOkClickFinish()" class="close">&times;</span>
 		</div>
 
 	</body>
