@@ -146,6 +146,26 @@ function gameOver(scene) {
   );
 }
 
+function autoComplete(scene) {
+  scene.children.forEach(
+    w => {
+      var x = document.createElement("canvas");
+      var xc = x.getContext("2d");
+      x.width = x.height = 128;
+      xc.fillStyle = "white";
+      xc.fillRect(0, 0, 128, 128);
+      xc.fillStyle = "black";
+      xc.font = "64pt NYTFranklinMedium";
+      xc.textAlign = "center";
+      xc.fillText(w.correctValue+"", 64, 96);
+      w.currentValue = w.correctValue;
+      var cmap = new THREE.Texture(x);
+      w.material.map = cmap;
+      w.material.map.needsUpdate = true;
+    }
+  );
+}
+
 function toggleSidenav() {
   document.body.classList.toggle("sidenav-active");
 }
